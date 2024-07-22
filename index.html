@@ -208,6 +208,7 @@
                 <a href="javascript:void(0);" onclick="location.reload();">首页</a>
                 <a href="https://www.dqzboy.com" target="_blank">博客</a>
                 <a href="https://www.dqzboy.com/zanzu" target="_blank">捐赠</a>
+                <a href="https://uk.dqzboy.xyz/" target="_blank">教程</a>
                 <a href="https://t.me/dqzboyblog" target="_blank">交流群</a>
                 <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank">GitHub</a>
             </nav>
@@ -223,7 +224,7 @@
         <!-- 广告容器 -->
         <div class="ad-container" id="adContainer">
             <a href="https://example.com" target="_blank">
-                <img src="https://github.com/user-attachments/assets/595f645a-e4da-49fd-bd67-db93566a6152?text=Ad+Banner" alt="广告图片">
+                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/dashang.png?text=Ad+Banner" alt="广告图片">
             </a>
         </div>
         <!-- 结果容器 -->
@@ -252,8 +253,7 @@
                 return;
             }
             // docker镜像加速地址，请把下面your_domain改为你实际的加速地址
-            //const proxyDomain = 'your_domain'; //例如：hub.baidu.com
-            let proxyDomain;
+            const proxyDomain = 'hub.dqzboy.xyz'; //例如：hub.baidu.com
             let [imageName, tag] = imageInput.split(':');
             tag = tag || 'latest';
             
@@ -261,9 +261,9 @@
             let proxyImage = '';
 
             if (!imageName.includes('/')) {
-                proxyImage = `${window.proxyDomain}/library/${imageName}:${tag}`;
+                proxyImage = `${proxyDomain}/library/${imageName}:${tag}`;
             } else {
-                proxyImage = `${window.proxyDomain}/${imageName}:${tag}`;
+                proxyImage = `${proxyDomain}/${imageName}:${tag}`;
             }
 
             const commands = [
@@ -311,51 +311,6 @@
                 behavior: 'smooth'
             });
         }
-
-        // 加载配置
-        function loadConfig() {
-            const defaultConfig = {
-                logo: "https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png",
-                proxyDomain: "your_domain",
-                menuItems: [
-                    { text: "首页", url: "javascript:void(0);", onclick: "location.reload();", newTab: "no" },
-                    { text: "博客", url: "https://www.dqzboy.com", newTab: "yes" },
-                    { text: "捐赠", url: "https://www.dqzboy.com/zanzu", newTab: "yes" },
-                    { text: "交流群", url: "https://t.me/dqzboyblog", newTab: "yes" },
-                    { text: "GitHub", url: "https://github.com/dqzboy/Docker-Proxy", newTab: "yes" }
-                ],
-                adImage: "https://example.com/ad-image.jpg"
-            };
-
-            const storedConfig = JSON.parse(localStorage.getItem('dockerProxyConfig') || '{}');
-            return { ...defaultConfig, ...storedConfig };
-        }
-
-        // 应用配置
-        function applyConfig() {
-            const config = loadConfig();
-            
-            // 设置 Logo
-            document.querySelector('.logo').src = config.logo;
-            
-            // 设置菜单项
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.innerHTML = config.menuItems.map(item => 
-                `<a href="${item.url}"${item.newTab === 'yes' ? ' target="_blank"' : ''}${item.onclick ? ` onclick="${item.onclick}"` : ''}>${item.text}</a>`
-            ).join('');
-            
-            // 设置 Docker 加速地址
-            window.proxyDomain = config.proxyDomain;
-
-            // 设置广告图片
-            const adImage = document.querySelector('#adContainer img');
-            if (adImage) {
-                adImage.src = config.adImage;
-            }
-        }
-        
-        // 添加事件监听器，确保在 DOM 加载完成后应用配置
-        document.addEventListener('DOMContentLoaded', applyConfig);
     </script>
 </body>
 </html>
