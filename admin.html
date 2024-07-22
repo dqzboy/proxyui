@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker 镜像代理加速 - 配置管理</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            margin: 0;
+            padding: 20px;
+            background-color: #f6f8fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0366d6;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="url"], select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #d1d5da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2ea44f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2c974b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid #d1d5da;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+        }
+        .menu-input {
+            width: 100%;
+            padding: 4px;
+            font-size: 14px;
+        }
+        .add-row-btn {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Docker 镜像代理加速 - 配置管理</h1>
+        <form id="configForm">
+            <div class="form-group">
+                <label for="logo">Logo URL:</label>
+                <input type="url" id="logo" name="logo">
+            </div>
+            <div class="form-group">
+                <label for="proxyDomain">Docker 加速地址:</label>
+                <input type="text" id="proxyDomain" name="proxyDomain" required>
+            </div>
+            <div class="form-group">
+                <label>菜单项:</label>
+                <table id="menuTable">
+                    <thead>
+                        <tr>
+                            <th>文本</th>
+                            <th>链接</th>
+                            <th>新标签页打开</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menuTableBody">
+                    </tbody>
+                </table>
+                <button type="button" class="add-row-btn" onclick="addMenuRow()">添加菜单项</button>
+            </div>
+            <div class="form-group">
+                <label for="adImage">广告图片 URL:</label>
+                <input type="url" id="adImage" name="adImage">
+            </div>
+            <button type="submit">保存配置</button>
+        </form>
+    </div>
+
+    <script>
+        function addMenuRow(text = '', url = '', newTab = 'no') {
+            const tbody = document.getElementById('menuTableBody');
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td><input type="text" class="menu-input" value="${text}" placeholder="菜单文本"></td>
+                <td><input type="text" class="menu-input" value="${url}" placeholder="链接地址"></td>
+                <td>
+                    <select class="menu-input">
+                        <option value="no" ${newTab === 'no' ? 'selected' : ''}>否</option>
+                        <option value="yes" ${newTab === 'yes' ? 'selected' : ''}>是</option>
+                    </select>
+                </td>
+                <td><button type="button" onclick="this.parentNode.parentNode.remove()">删除</button></td>
+            `;
+        }
+
+        function loadConfig() {
+            const config = JSON.parse(localStorage.getItem('dockerProxyConfig') || '{}');
+            document.getElementById('logo').value = config.logo || '';
+            document.getElementById('proxyDomain').value = config.proxyDomain || '';
+            document.getElementById('adImage').value = config.adImage || '';
+            
+            const menuTableBody = document.getElementById('menuTableBody');
+            menuTableBody.innerHTML = '';
+            if (config.menuItems && config.menuItems.length) {
+                config.menuItems.forEach(item => {
+                    addMenuRow(item.text, item.url, item.newTab);
+                });
+            } else {
+                addMenuRow();
+            }
+        }
+
+        document.getElementById('configForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const menuItems = [];
+            document.querySelectorAll('#menuTableBody tr').forEach(row => {
+                const inputs = row.querySelectorAll('input, select');
+                menuItems.push({
+                    text: inputs[0].value,
+                    url: inputs[1].value,
+                    newTab: inputs[2].value
+                });
+            });
+
+            const config = {
+                logo: document.getElementById('logo').value,
+                proxyDomain: document.getElementById('proxyDomain').value,
+                menuItems: menuItems,
+                adImage: document.getElementById('adImage').value
+            };
+
+            localStorage.setItem('dockerProxyConfig', JSON.stringify(config));
+            alert('配置已保存');
+        });
+
+        loadConfig();
+    </script>
+</body>
+</html>
