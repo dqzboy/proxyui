@@ -221,6 +221,19 @@
                 display: flex;
             }
         }
+        .copy-success {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -259,11 +272,14 @@
     </div>
     <!-- 页脚 -->
     <footer class="footer">
-        <p>Copyright © <span id="currentYear"></span> dqzboy.com. All Rights Reserved. <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank" rel="noopener noreferrer">Docker-Proxy</a>版权所有</p>
+        <p>Copyright © <span id="currentYear"></span> All Rights Reserved. <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank" rel="noopener noreferrer">Docker-Proxy </a>版权所有</p>
     </footer>
 
     <!-- 返回顶部按钮 -->
     <button id="backToTopBtn" onclick="scrollToTop()">⌃</button>
+
+    <!-- 复制成功提示 -->
+    <div class="copy-success" id="copySuccess">复制成功</div>
 
     <script>
         // 设置当前年份
@@ -321,7 +337,11 @@
         // 复制命令到剪贴板
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('命令已复制到剪贴板');
+                const copySuccess = document.getElementById('copySuccess');
+                copySuccess.style.opacity = 1;
+                setTimeout(() => {
+                    copySuccess.style.opacity = 0;
+                }, 2000);
             }, (err) => {
                 console.error('无法复制文本: ', err);
             });
