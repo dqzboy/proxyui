@@ -34,16 +34,18 @@
             width: 100%;
             max-width: 1200px;
         }
+        .logo-container {
+            display: inline-block;
+            cursor: default;
+        }
+
+        .logo-container:hover {
+            opacity: 1;
+        }
+
         .logo {
             max-height: 70px;
-        }
-        .logo-link {
-            display: inline-block;
-            text-decoration: none;
-        }
-        .logo-link:hover {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         .nav-menu {
             display: flex;
@@ -395,9 +397,9 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo-link">
+            <div class="logo-container">
                 <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" alt="Logo" class="logo">
-            </a>
+            </div>
             <div class="menu-toggle" id="menuToggle">☰</div>
             <nav class="nav-menu" id="navMenu">
                 <!-- 菜单项将通过 JavaScript 动态加载 -->
@@ -433,7 +435,6 @@
         </div>
 
         <div id="documentationContent" class="content">
-            <div id="documentList"></div>
             <div id="documentationText"></div>
         </div>
 
@@ -476,7 +477,6 @@
         // 文档数据
         const documentationData = [
             {
-                id: "doc1",
                 title: "客户端配置教程",
                 content: `
         # 客户端配置教程
@@ -560,7 +560,7 @@
         location = "https://<代理加速地址>"
         \`\`\`
         `
-            },
+            }
         ];
 
         let currentIndex = 0;
@@ -749,25 +749,20 @@
         }
 
 
-        function testDockerHubConnection() {
-            fetch('https://hub.docker.com/v2/_ping')
-                .then(response => {
-                    if (response.ok) {
-                        console.log('成功连接到 Docker Hub API');
-                        alert('成功连接到 Docker Hub API');
-                    } else {
-                        throw new Error('无法连接到 Docker Hub API');
-                    }
-                })
-                .catch(error => {
-                    console.error('连接测试失败:', error);
-                    alert('无法连接到 Docker Hub API: ' + error.message);
-                });
-        }
-
+        // 模拟的 Docker 镜像数据
+        const mockDockerImages = [
+            { repo_name: "nginx", is_official: true, star_count: 15000, short_description: "Official build of Nginx" },
+            { repo_name: "ubuntu", is_official: true, star_count: 12000, short_description: "Ubuntu is a Debian-based Linux operating system" },
+            { repo_name: "redis", is_official: true, star_count: 10000, short_description: "Redis is an open source key-value store" },
+            { repo_name: "elasticsearch", is_official: true, star_count: 8000, short_description: "Elasticsearch is a distributed search and analytics engine" },
+            { repo_name: "mongo", is_official: true, star_count: 7000, short_description: "MongoDB document databases provide high availability and easy scalability" },
+            { repo_name: "custom/app", is_official: false, star_count: 100, short_description: "A custom application image" },
+            { repo_name: "user/tool", is_official: false, star_count: 50, short_description: "A useful tool image" },
+            { repo_name: "company/service", is_official: false, star_count: 75, short_description: "A company service image" }
+        ];
 
         function searchDockerHub() {
-            const searchTerm = document.getElementById('searchInput').value.trim();
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
             if (!searchTerm) {
                 alert('请输入搜索关键词');
                 return;
@@ -781,47 +776,32 @@
             document.getElementById('carousel').style.display = 'none';
             document.getElementById('backToTopBtn').style.display = 'block';
 
-            fetch(`https://hub.docker.com/v2/search/repositories/?query=${encodeURIComponent(searchTerm)}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.results && data.results.length > 0) {
-                        const officialImages = data.results.filter(result => result.is_official);
-                        const unofficialImages = data.results.filter(result => !result.is_official)
-                            .sort((a, b) => (b.star_count || 0) - (a.star_count || 0))
-                            .slice(0, 5);
+            // 模拟搜索延迟
+            setTimeout(() => {
+                const results = mockDockerImages.filter(img => 
+                    img.repo_name.toLowerCase().includes(searchTerm) || 
+                    img.short_description.toLowerCase().includes(searchTerm)
+                );
 
-                        searchResults.innerHTML = '';
+                if (results.length > 0) {
+                    const officialImages = results.filter(result => result.is_official);
+                    const unofficialImages = results.filter(result => !result.is_official)
+                        .sort((a, b) => b.star_count - a.star_count)
+                        .slice(0, 5);
 
-                        // 显示官方镜像
-                        officialImages.forEach(result => {
-                            searchResults.appendChild(createResultItem(result, true));
-                        });
+                    searchResults.innerHTML = '';
 
-                        // 显示前5个非官方镜像
-                        unofficialImages.forEach(result => {
-                            searchResults.appendChild(createResultItem(result, false));
-                        });
+                    officialImages.forEach(result => {
+                        searchResults.appendChild(createResultItem(result, true));
+                    });
 
-                        if (officialImages.length === 0 && unofficialImages.length === 0) {
-                            searchResults.innerHTML = '未找到匹配的镜像';
-                        }
-                    } else {
-                        searchResults.innerHTML = '未找到匹配的镜像';
-                    }
-                })
-                .catch(error => {
-                    console.error('搜索出错:', error);
-                    if (error.message.includes('Failed to fetch')) {
-                        searchResults.innerHTML = '无法连接到 Docker Hub API。请检查您的网络连接。';
-                    } else {
-                        searchResults.innerHTML = '搜索时发生错误：' + error.message;
-                    }
-                });
+                    unofficialImages.forEach(result => {
+                        searchResults.appendChild(createResultItem(result, false));
+                    });
+                } else {
+                    searchResults.innerHTML = '未找到匹配的镜像';
+                }
+            }, 500);  // 500ms 延迟模拟网络请求
         }
 
         function createResultItem(result, isOfficial) {
@@ -850,43 +830,37 @@
             }
         }
 
+
         function fetchDocumentation() {
-            const documentList = document.getElementById('documentList');
             const documentationText = document.getElementById('documentationText');
 
-            documentList.innerHTML = '<h2>文档列表</h2>';
-            const ul = document.createElement('ul');
-            documentationData.forEach(doc => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="javascript:void(0);" onclick="showDocument('${doc.id}')">${doc.title}</a>`;
-                ul.appendChild(li);
-            });
-            documentList.appendChild(ul);
-
             if (documentationData.length > 0) {
-                showDocument(documentationData[0].id); // 显示第一个文档的内容
+                const document = documentationData[0]; // 获取第一个（也是唯一的）文档
+
+                if (typeof marked !== 'function') {
+                    console.error('marked 库未正确加载');
+                    documentationText.innerHTML = '无法显示文档内容，请刷新页面后重试。';
+                    return;
+                }
+
+                try {
+                    // 使用 marked 库解析 Markdown 内容
+                    const parsedContent = marked.parse(document.content);
+                    documentationText.innerHTML = `<h1>${document.title}</h1>${parsedContent}`;
+
+                    // 给所有代码块添加样式
+                    documentationText.querySelectorAll('pre code').forEach((block) => {
+                        block.style.display = 'block';
+                        block.style.whiteSpace = 'pre-wrap';
+                    });
+                } catch (error) {
+                    console.error('解析 Markdown 时出错:', error);
+                    documentationText.innerHTML = '解析文档内容时出错，请稍后重试。';
+                }
             } else {
                 documentationText.innerHTML = '暂无文档内容';
             }
-        }
-
-        function showDocument(id) {
-            const documentationText = document.getElementById('documentationText');
-            const document = documentationData.find(doc => doc.id === id);
-
-            if (document && document.content) {
-                // 使用 marked 库解析 Markdown 内容
-                const parsedContent = marked.parse(document.content);
-                documentationText.innerHTML = `<h1>${document.title}</h1>${parsedContent}`;
-
-                // 给所有代码块添加样式
-                documentationText.querySelectorAll('pre code').forEach((block) => {
-                    block.style.display = 'block';
-                    block.style.whiteSpace = 'pre-wrap';
-                });
-            } else {
-                documentationText.innerHTML = '该文档没有内容或格式不正确';
-            }
+            document.getElementById('carousel').style.display = 'none';
         }
 
         // 监听滚动事件，控制返回顶部按钮的显示
