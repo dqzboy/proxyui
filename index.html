@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker 镜像代理加速</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
@@ -36,9 +37,17 @@
         .logo {
             max-height: 70px;
         }
+        .logo-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+        .logo-link:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 10px;
             font-size: 18px;
             margin-left: auto;
         }
@@ -46,10 +55,28 @@
             color: #0366d6;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+            position: relative;
         }
         .nav-menu a:hover {
-            color: #0056b3;
+            color: #0366d6;
+            background-color: rgba(3, 102, 214, 0.1);
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #0366d6;
+            transition: all 0.3s ease;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+            left: 0;
         }
         .container {
             max-width: 800px;
@@ -96,16 +123,57 @@
         button:hover {
             background-color: #2c974b;
         }
-        .ad-container {
+        .carousel {
+            width: 100%;
+            height: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1000px;
+            position: relative;
             margin-top: 30px;
             margin-bottom: 30px;
         }
-        .ad-container img {
-            max-width: 100%;
-            border-radius: 8px;
+        .carousel-inner {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: translateZ(-300px);
+            transition: transform 1s;
+        }
+        .carousel-item {
+            position: absolute;
+            width: 70%;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform-origin: center center;
+            transition: transform 1s, opacity 1s;
+            opacity: 0.5;
+        }
+        .carousel-item.active {
+            transform: translateX(-50%) translateZ(300px);
+            opacity: 1;
+        }
+        .carousel-item.left {
+            transform: translateX(-150%) translateZ(100px) rotateY(30deg);
+        }
+        .carousel-item.right {
+            transform: translateX(50%) translateZ(100px) rotateY(-30deg);
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .carousel-control.left {
+            left: 10px;
+        }
+        .carousel-control.right {
+            right: 10px;
         }
         pre {
             background-color: #f6f8fa;
@@ -194,117 +262,403 @@
         #backToTopBtn:hover::after {
             display: block;
         }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #d1d5da;
+            background-color: #f6f8fa;
+            color: #24292e;
+        }
+        .tab.active {
+            background-color: #0366d6;
+            color: white;
+            border-color: #0366d6;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+        .notification {
+            display: none;
+            position: absolute;
+            top: 7px;
+            left: 87%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000;
+        }
+        .search-result-item {
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .search-result-item h3 {
+            margin-top: 0;
+        }
+        .search-result-item p {
+            margin-bottom: 5px;
+        }
+        .use-image-btn {
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .use-image-btn:hover {
+            background-color: #0256b9;
+        }
+        .official-image {
+            background-color: #e6f3ff;
+            border-left: 5px solid #0366d6;
+            padding-left: 15px;
+        }
+        .official-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .stars {
+            color: #586069;
+            font-size: 14px;
+        }
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
-            }
-            .header-content {
                 flex-direction: column;
-            }
-            .logo {
-                margin-bottom: 10px;
-            }
-            .input-group {
-                flex-direction: column;
-            }
-            .container {
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                padding: 10px;
+                background-color: #ffffff;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                padding: 10px 0;
             }
-            .ad-container img {
-                width: 100%;
-                height: auto;
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu a {
+                padding: 10px 20px;
+            }
+            .menu-toggle {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
             }
         }
         @media (min-width: 769px) {
-            .nav-menu {
-                display: flex;
+            .menu-toggle {
+                display: none;
             }
         }
-        .copy-success {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
+        #documentationText {
+            line-height: 1.6;
+        }
+        #documentationText h1, #documentationText h2, #documentationText h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #documentationText code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        #documentationText pre {
+            background-color: #f0f0f0;
+            padding: 15px;
             border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            overflow-x: auto;
+        }
+        #documentationText ul, #documentationText ol {
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- 页眉 -->
     <header class="header">
         <div class="header-content">
-            <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" alt="Logo" class="logo">
-            <nav class="nav-menu">
-                <a href="javascript:void(0);" onclick="location.reload();">首页</a>
-                <a href="https://www.dqzboy.com" target="_blank">博客</a>
-                <a href="https://www.dqzboy.com/zanzu" target="_blank">赞赏</a>
-                <a href="https://my.racknerd.com/aff.php?aff=12151" target="_blank">高性价比VPS</a>
-                <a href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/%E5%90%88%E4%BD%9C%E8%81%94%E7%B3%BB.png" target="_blank">合作联系</a>
-                <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank">GitHub</a>
+            <a href="/" class="logo-link">
+                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" alt="Logo" class="logo">
+            </a>
+            <div class="menu-toggle" id="menuToggle">☰</div>
+            <nav class="nav-menu" id="navMenu">
+                <!-- 菜单项将通过 JavaScript 动态加载 -->
             </nav>
         </div>
     </header>
-    <!-- 内容容器 -->
+
     <div class="container">
-        <h1>Docker 镜像代理加速</h1>
-        <div class="input-group">
-            <input type="text" id="imageInput" placeholder="输入 Docker 镜像，例如：nginx 或 mysql:5.7">
-            <button onclick="generateCommands()">获取加速命令</button>
+        <h1>Docker 镜像加速和镜像搜索</h1>
+        <div class="tab-container">
+            <div class="tab active" onclick="switchTab('accelerate')">镜像加速</div>
+            <div class="tab" onclick="switchTab('search')">镜像搜索</div>
+            <div class="tab" onclick="switchTab('documentation')">文档教程</div>
         </div>
-        <!-- 广告容器 -->
-        <div class="ad-container" id="adContainer">
-            <a href="https://www.dqzboy.com/17834.html" target="_blank">
-                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy-vip.png?text=Ad+Banner" alt="广告图片">
-            </a>
+
+        <div id="accelerateContent" class="content active">
+            <div class="input-group">
+                <input type="text" id="imageInput" placeholder="请输入 Docker 镜像名称，例如：nginx 或 mysql:5.7">
+                <button onclick="generateCommands()">获取加速命令</button>
+            </div>
+            <div id="result" style="display:none;">
+                <h2>加速命令</h2>
+                <div id="commandsContainer"></div>
+            </div>
         </div>
-        <!-- 结果容器 -->
-        <div id="result" style="display:none;">
-            <h2>加速命令</h2>
-            <div id="commandsContainer"></div>
+
+        <div id="searchContent" class="content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="请输入 Docker 镜像名称进行搜索">
+                <button onclick="searchDockerHub()">搜索Docker镜像</button>
+            </div>
+            <div id="searchResults"></div>
+        </div>
+
+        <div id="documentationContent" class="content">
+            <div id="documentList"></div>
+            <div id="documentationText"></div>
+        </div>
+
+        <div class="carousel" id="carousel">
+            <div class="carousel-inner" id="carouselInner">
+                <!-- 图片将在 JavaScript 中加载 -->
+            </div>
+            <div class="carousel-control left" onclick="prevSlide()">&#10094;</div>
+            <div class="carousel-control right" onclick="nextSlide()">&#10095;</div>
         </div>
     </div>
-    <!-- 页脚 -->
+
     <footer class="footer">
-        <p>Copyright © <span id="currentYear"></span> All Rights Reserved. <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank" rel="noopener noreferrer">Docker-Proxy </a>版权所有</p>
+        <p>Copyright © <span id="currentYear"></span> All Rights Reserved. <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank" rel="noopener noreferrer">Docker-Proxy</a> 版权所有</p>
     </footer>
 
-    <!-- 返回顶部按钮 -->
     <button id="backToTopBtn" onclick="scrollToTop()">⌃</button>
 
-    <!-- 复制成功提示 -->
-    <div class="copy-success" id="copySuccess">复制成功</div>
-
     <script>
+        const proxyDomain = 'dqzboy/Docker-Proxy'; // 示例代理域名，请根据实际情况修改
+
         // 设置当前年份
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // 生成加速命令
-        function generateCommands() {
-            const imageInput = document.getElementById('imageInput').value.trim();
+        // 模拟配置数据
+        const config = {
+            logo: 'https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png',
+            menuItems: [
+                { text: '首页', link: '#' },
+                { text: 'GitHub', link: 'https://github.com/dqzboy/Docker-Proxy', newTab: true },
+                { text: '关于', link: 'https://github.com/dqzboy/Docker-Proxy' }
+            ],
+            adImages: [
+                { url: 'https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/reacknerd-ad.png', alt: '广告1', link: 'https://my.racknerd.com/aff.php?aff=12151' },
+                { url: 'https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/racknerd_vps.png', alt: '广告2', link: 'https://my.racknerd.com/aff.php?aff=12151' },
+                { url: 'https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy-vip.png', alt: '广告3', link: 'https://www.dqzboy.com/17834.html' }
+            ]
+        };
+
+        // 文档数据
+        const documentationData = [
+            {
+                id: "doc1",
+                title: "客户端配置教程",
+                content: `
+        # 客户端配置教程
+
+        ## Docker 配置镜像加速
+        修改文件 \`/etc/docker/daemon.json\`（如果不存在则创建）
+
+        \`\`\`shell
+        sudo mkdir -p /etc/docker
+        sudo vi /etc/docker/daemon.json
+        {
+          "registry-mirrors": ["https://<代理加速地址>"]
+        }
+
+        sudo systemctl daemon-reload
+        sudo systemctl restart docker
+        \`\`\`
+
+        ## Containerd 配置镜像加速
+        修改 \`/etc/containerd/config.toml\`，添加如下的配置：
+
+        \`\`\`yaml
+        [plugins."io.containerd.grpc.v1.cri".registry]
+          [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."k8s.gcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."gcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."ghcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
+              endpoint = ["https://<代理加速地址>"]
+        \`\`\`
+
+        ## Podman 配置镜像加速
+        修改配置文件 \`/etc/containers/registries.conf\`，添加配置：
+
+        \`\`\`yaml
+        unqualified-search-registries = ['docker.io', 'k8s.gcr.io', 'gcr.io', 'ghcr.io', 'quay.io']
+
+        [[registry]]
+        prefix = "docker.io"
+        insecure = true
+        location = "registry-1.docker.io"
+
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+
+        [[registry]]
+        prefix = "k8s.gcr.io"
+        insecure = true
+        location = "k8s.gcr.io"
+
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+
+        [[registry]]
+        prefix = "gcr.io"
+        insecure = true
+        location = "gcr.io"
+
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+
+        [[registry]]
+        prefix = "ghcr.io"
+        insecure = true
+        location = "ghcr.io"
+
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+
+        [[registry]]
+        prefix = "quay.io"
+        insecure = true
+        location = "quay.io"
+
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+        \`\`\`
+        `
+            },
+        ];
+
+        let currentIndex = 0;
+        let items = [];
+        let autoPlayTimer;
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            loadConfig();
+        });
+
+        function loadConfig() {
+            // 加载菜单项
+            const navMenu = document.getElementById('navMenu');
+            config.menuItems.forEach(item => {
+                const a = document.createElement('a');
+                a.href = item.link;
+                a.textContent = item.text;
+                if (item.newTab) {
+                    a.target = '_blank';
+                }
+                navMenu.appendChild(a);
+            });
+
+            // 加载轮播图
+            const carouselInner = document.getElementById('carouselInner');
+            config.adImages.forEach((ad, index) => {
+                const adItem = document.createElement('div');
+                adItem.className = 'carousel-item';
+                if (index === 0) {
+                    adItem.classList.add('active');
+                }
+                const adImage = document.createElement('img');
+                adImage.src = ad.url;
+                adImage.alt = ad.alt || '广告图片';
+                adImage.style.width = "100%";
+                adImage.style.height = "100%";
+                adItem.appendChild(adImage);
+                carouselInner.appendChild(adItem);
+
+                adItem.addEventListener('click', function() {
+                    window.open(ad.link, '_blank');
+                });
+                adItem.style.cursor = 'pointer';
+            });
+            items = document.querySelectorAll('.carousel-item');
+            updateCarousel();
+            startAutoPlay();
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.querySelector(`.tab:nth-child(${tabName === 'accelerate' ? '1' : (tabName === 'search' ? '2' : '3')}`).classList.add('active');
+            document.getElementById(`${tabName}Content`).classList.add('active');
+
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('backToTopBtn').style.display = 'none';
+            
+            // 只在非文档页面显示轮播广告
+            if (tabName !== 'documentation') {
+                document.getElementById('carousel').style.display = 'flex';
+            } else {
+                document.getElementById('carousel').style.display = 'none';
+            }
+
+            if (tabName === 'documentation') {
+                fetchDocumentation();
+            } else if (tabName === 'accelerate') {
+                const imageInput = document.getElementById('imageInput').value.trim();
+                if (imageInput) {
+                    generateCommands(imageInput);
+                }
+            } else if (tabName === 'search') {
+                document.getElementById('searchInput').value = '';
+            }
+        }
+
+        function generateCommands(imageInput) {
             if (!imageInput) {
-                alert('请输入 Docker 镜像');
+                imageInput = document.getElementById('imageInput').value.trim();
+            }
+            if (!imageInput) {
+                alert('请输入 Docker 镜像名称');
                 return;
             }
-            // docker镜像加速地址，请把下面your_domain改为你实际的加速地址
-            const proxyDomain = 'hub.dqzboy.xyz'; //例如：hub.baidu.com
             let [imageName, tag] = imageInput.split(':');
             tag = tag || 'latest';
-            
-            let originalImage = `${imageName}:${tag}`;
-            let proxyImage = '';
 
-            if (!imageName.includes('/')) {
-                proxyImage = `${proxyDomain}/library/${imageName}:${tag}`;
-            } else {
-                proxyImage = `${proxyDomain}/${imageName}:${tag}`;
-            }
+            let originalImage = `${imageName}:${tag}`;
+            let proxyImage = `${proxyDomain}/${imageName}:${tag}`;
 
             const commands = [
                 { title: "原始拉取命令", cmd: `docker pull ${originalImage}` },
@@ -317,43 +671,244 @@
             const container = document.getElementById('commandsContainer');
             container.innerHTML = '';
 
-            // 将生成的命令添加到结果容器中
             commands.forEach((command, index) => {
                 const cmdDiv = document.createElement('div');
                 cmdDiv.className = 'step';
                 cmdDiv.innerHTML = `
                     <h3>${index + 1}. ${command.title}</h3>
-                    <pre><code>${command.cmd}</code><button class="copy-btn" onclick="copyToClipboard('${command.cmd}')">复制</button></pre>
+                    <pre><code>${command.cmd}</code><div id="copyNotification${index}" class="notification">已复制!</div><button class="copy-btn" onclick="copyToClipboard('${command.cmd}', 'copyNotification${index}')">复制</button></pre>
                 `;
                 container.appendChild(cmdDiv);
             });
 
-            // 显示结果并隐藏广告
             resultDiv.style.display = 'block';
-            document.getElementById('adContainer').style.display = 'none';
+            document.getElementById('carousel').style.display = 'none';
             document.getElementById('backToTopBtn').style.display = 'block';
         }
 
-        // 复制命令到剪贴板
-        function copyToClipboard(text) {
+        function copyToClipboard(text, notificationId) {
             navigator.clipboard.writeText(text).then(() => {
-                const copySuccess = document.getElementById('copySuccess');
-                copySuccess.style.opacity = 1;
-                setTimeout(() => {
-                    copySuccess.style.opacity = 0;
-                }, 2000);
+                showNotification(notificationId);
             }, (err) => {
                 console.error('无法复制文本: ', err);
             });
         }
 
-        // 滚动到顶部
+        function showNotification(notificationId) {
+            var notification = document.getElementById(notificationId);
+            notification.style.display = 'block';
+            notification.style.opacity = '1';
+
+            setTimeout(function() {
+                notification.style.opacity = '0';
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 500);
+            }, 2000);
+        }
+
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         }
+
+        function updateCarousel() {
+            items.forEach((item, index) => {
+                item.classList.remove('active', 'left', 'right');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index === (currentIndex - 1 + items.length) % items.length) {
+                    item.classList.add('left');
+                } else if (index === (currentIndex + 1) % items.length) {
+                    item.classList.add('right');
+                }
+            });
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(nextSlide, 10000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            startAutoPlay();
+        }
+
+
+        function testDockerHubConnection() {
+            fetch('https://hub.docker.com/v2/_ping')
+                .then(response => {
+                    if (response.ok) {
+                        console.log('成功连接到 Docker Hub API');
+                        alert('成功连接到 Docker Hub API');
+                    } else {
+                        throw new Error('无法连接到 Docker Hub API');
+                    }
+                })
+                .catch(error => {
+                    console.error('连接测试失败:', error);
+                    alert('无法连接到 Docker Hub API: ' + error.message);
+                });
+        }
+
+
+        function searchDockerHub() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                alert('请输入搜索关键词');
+                return;
+            }
+
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '正在搜索...';
+
+            searchResults.style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('carousel').style.display = 'none';
+            document.getElementById('backToTopBtn').style.display = 'block';
+
+            fetch(`https://hub.docker.com/v2/search/repositories/?query=${encodeURIComponent(searchTerm)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        const officialImages = data.results.filter(result => result.is_official);
+                        const unofficialImages = data.results.filter(result => !result.is_official)
+                            .sort((a, b) => (b.star_count || 0) - (a.star_count || 0))
+                            .slice(0, 5);
+
+                        searchResults.innerHTML = '';
+
+                        // 显示官方镜像
+                        officialImages.forEach(result => {
+                            searchResults.appendChild(createResultItem(result, true));
+                        });
+
+                        // 显示前5个非官方镜像
+                        unofficialImages.forEach(result => {
+                            searchResults.appendChild(createResultItem(result, false));
+                        });
+
+                        if (officialImages.length === 0 && unofficialImages.length === 0) {
+                            searchResults.innerHTML = '未找到匹配的镜像';
+                        }
+                    } else {
+                        searchResults.innerHTML = '未找到匹配的镜像';
+                    }
+                })
+                .catch(error => {
+                    console.error('搜索出错:', error);
+                    if (error.message.includes('Failed to fetch')) {
+                        searchResults.innerHTML = '无法连接到 Docker Hub API。请检查您的网络连接。';
+                    } else {
+                        searchResults.innerHTML = '搜索时发生错误：' + error.message;
+                    }
+                });
+        }
+
+        function createResultItem(result, isOfficial) {
+            const resultItem = document.createElement('div');
+            resultItem.className = `search-result-item ${isOfficial ? 'official-image' : ''}`;
+
+            const officialBadge = isOfficial ? '<span class="official-badge">官方</span>' : '';
+            const stars = result.star_count !== undefined ? `<span class="stars">★ ${result.star_count}</span>` : '';
+
+            resultItem.innerHTML = `
+                <h3>${result.repo_name || '未知名称'} ${officialBadge}</h3>
+                <p>描述: ${result.short_description || '无描述'}</p>
+                <p>${stars}</p>
+                <button class="use-image-btn" onclick="useImage('${result.repo_name || ''}')">使用此镜像</button>
+            `;
+            return resultItem;
+        }
+
+        function useImage(imageName) {
+            if (imageName) {
+                document.getElementById('imageInput').value = imageName;
+                switchTab('accelerate');
+                generateCommands(imageName);
+            } else {
+                alert('无效的 Docker 镜像名称');
+            }
+        }
+
+        function fetchDocumentation() {
+            const documentList = document.getElementById('documentList');
+            const documentationText = document.getElementById('documentationText');
+
+            documentList.innerHTML = '<h2>文档列表</h2>';
+            const ul = document.createElement('ul');
+            documentationData.forEach(doc => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="javascript:void(0);" onclick="showDocument('${doc.id}')">${doc.title}</a>`;
+                ul.appendChild(li);
+            });
+            documentList.appendChild(ul);
+
+            if (documentationData.length > 0) {
+                showDocument(documentationData[0].id); // 显示第一个文档的内容
+            } else {
+                documentationText.innerHTML = '暂无文档内容';
+            }
+        }
+
+        function showDocument(id) {
+            const documentationText = document.getElementById('documentationText');
+            const document = documentationData.find(doc => doc.id === id);
+
+            if (document && document.content) {
+                // 使用 marked 库解析 Markdown 内容
+                const parsedContent = marked.parse(document.content);
+                documentationText.innerHTML = `<h1>${document.title}</h1>${parsedContent}`;
+
+                // 给所有代码块添加样式
+                documentationText.querySelectorAll('pre code').forEach((block) => {
+                    block.style.display = 'block';
+                    block.style.whiteSpace = 'pre-wrap';
+                });
+            } else {
+                documentationText.innerHTML = '该文档没有内容或格式不正确';
+            }
+        }
+
+        // 监听滚动事件，控制返回顶部按钮的显示
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("backToTopBtn").style.display = "block";
+            } else {
+                document.getElementById("backToTopBtn").style.display = "none";
+            }
+        };
+
+        // 当页面不可见时暂停自动播放，可见时恢复
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                clearInterval(autoPlayTimer);
+            } else {
+                startAutoPlay();
+            }
+        });
+
+        // 初始化页面
+        switchTab('accelerate');
     </script>
 </body>
 </html>
