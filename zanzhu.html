@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告提供商展示 - 您的广告解决方案</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        .search-bar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar input {
+            width: 50%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-bar button:hover {
+            background-color: #27ae60;
+        }
+        .featured-providers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        .featured-provider {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            height: 200px; /* 设置固定高度 */
+        }
+        .featured-provider:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .featured-provider::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+        .featured-provider:hover::before {
+            transform: rotate(0deg);
+        }
+        .featured-provider h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        .featured-provider p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .featured-provider .learn-more {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .featured-provider .learn-more:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        .featured-provider img {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: bottom 0.3s ease;
+            z-index: 1;
+        }
+        .featured-provider:hover img {
+            bottom: 0;
+        }
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .provider-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .provider-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .provider-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .provider-card:hover img {
+            transform: scale(1.1);
+        }
+        .provider-info {
+            padding: 20px;
+        }
+        .provider-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+        }
+        .provider-description {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .provider-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        .learn-more {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+        .learn-more:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        .apply-section {
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .apply-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .apply-section ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .apply-section .contact-info {
+            background-color: var(--background-color);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s, opacity 0.3s;
+            opacity: 0.7;
+            z-index: 1000;
+        }
+        #backToTop:hover {
+            background-color: var(--secondary-color);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Docker-Proxy 赞助商家</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="搜索广告提供商...">
+            <button id="searchButton">搜索</button>
+        </div>
+
+        <div class="provider-grid">
+            <div class="provider-card">
+                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="zanzhu Ads">
+                <div class="provider-info">
+                    <h2 class="provider-name">赞助平台</h2>
+                    <p class="provider-description">全球领先的平台，提供多样化的解决方案，助您触达目标受众。</p>
+                    <div class="provider-tags">
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                    </div>
+                    <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">了解更多</a>
+                </div>
+            </div>
+            <div class="provider-card">
+                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="zanzhu Ads">
+                <div class="provider-info">
+                    <h2 class="provider-name">赞助平台</h2>
+                    <p class="provider-description">全球领先的平台，提供多样化的解决方案，助您触达目标受众。</p>
+                    <div class="provider-tags">
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                    </div>
+                    <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">了解更多</a>
+                </div>
+            </div>
+            <div class="provider-card">
+                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="zanzhu Ads">
+                <div class="provider-info">
+                    <h2 class="provider-name">赞助平台</h2>
+                    <p class="provider-description">全球领先的平台，提供多样化的解决方案，助您触达目标受众。</p>
+                    <div class="provider-tags">
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                        <span class="tag">标签</span>
+                    </div>
+                    <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">了解更多</a>
+                </div>
+            </div>
+        </div>
+
+    <div class="apply-section">
+        <h2>申请赞助</h2>
+        <h3>申请要求：</h3>
+        <ul>
+            <li>拥有合法的营业执照和相关资质</li>
+            <li>提供优质的广告服务或产品</li>
+            <li>具备良好的客户服务能力</li>
+            <li>遵守平台规则和行业道德准则</li>
+        </ul>
+        <h3>申请联系方式：</h3>
+        <div class="contact-info">
+            <a href="https://t.me/dqz_boy" class="learn-more" target="_blank">点击咨询</a>
+        </div>
+    </div>
+</main>
+
+<button id="backToTop" title="返回顶部">↑</button>
+
+<script>
+    function searchProviders() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+        const providerCards = document.querySelectorAll('.provider-card');
+        
+        providerCards.forEach(card => {
+            const providerName = card.querySelector('.provider-name').textContent.toLowerCase();
+            const providerDescription = card.querySelector('.provider-description').textContent.toLowerCase();
+            const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+            
+            if (searchTerm === '' || providerName.includes(searchTerm) || providerDescription.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // 为搜索按钮添加点击事件监听器
+    document.getElementById('searchButton').addEventListener('click', searchProviders);
+
+    // 为搜索输入框添加回车键事件监听器
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchProviders();
+        }
+    });
+
+    // 返回顶部按钮功能
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+</body>
+</html>
