@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker 镜像代理加速</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
@@ -453,8 +452,80 @@
 
     <button id="backToTopBtn" onclick="scrollToTop()">⌃</button>
 
+    <!-- 隐藏的文档内容 -->
+    <div id="hiddenDocumentation" style="display: none;">
+        # 客户端配置教程
+
+        ## Docker 配置镜像加速
+        修改文件 `/etc/docker/daemon.json`（如果不存在则创建）
+
+        ```shell
+        sudo mkdir -p /etc/docker
+        sudo vi /etc/docker/daemon.json
+        {
+          "registry-mirrors": ["https://<代理加速地址>"]
+        }
+        sudo systemctl daemon-reload
+        sudo systemctl restart docker
+        ```
+
+        ## Containerd 配置镜像加速
+        修改 `/etc/containerd/config.toml`，添加如下的配置：
+
+        ```yaml
+        [plugins."io.containerd.grpc.v1.cri".registry]
+          [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."k8s.gcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."gcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."ghcr.io"]
+              endpoint = ["https://<代理加速地址>"]
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
+              endpoint = ["https://<代理加速地址>"]
+        ```
+
+        ## Podman 配置镜像加速
+        修改配置文件 `/etc/containers/registries.conf`，添加配置：
+
+        ```shell
+        unqualified-search-registries = ['docker.io', 'k8s.gcr.io', 'gcr.io', 'ghcr.io', 'quay.io']
+        [[registry]]
+        prefix = "docker.io"
+        insecure = true
+        location = "registry-1.docker.io"
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+        [[registry]]
+        prefix = "k8s.gcr.io"
+        insecure = true
+        location = "k8s.gcr.io"
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+        [[registry]]
+        prefix = "gcr.io"
+        insecure = true
+        location = "gcr.io"
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+        [[registry]]
+        prefix = "ghcr.io"
+        insecure = true
+        location = "ghcr.io"
+        [[registry.mirror]]
+        location = "https://<代理加速地址>"
+        [[registry]]
+        prefix = "quay.io"
+        insecure = true
+        location = "quay.io"
+        ```
+    </div>
+
     <script>
         const proxyDomain = 'dqzboy/Docker-Proxy'; // 示例代理域名，请根据实际情况修改
+        const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/'; // CORS 代理服务 URL
 
         // 设置当前年份
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -475,109 +546,9 @@
             ]
         };
 
-        // 文档数据
-        const documentationData = [
-            {
-                title: "客户端配置教程",
-                content: `
-        # 客户端配置教程
-
-        ## Docker 配置镜像加速
-        修改文件 \`/etc/docker/daemon.json\`（如果不存在则创建）
-
-        \`\`\`shell
-        sudo mkdir -p /etc/docker
-        sudo vi /etc/docker/daemon.json
-        {
-          "registry-mirrors": ["https://<代理加速地址>"]
-        }
-
-        sudo systemctl daemon-reload
-        sudo systemctl restart docker
-        \`\`\`
-
-        ## Containerd 配置镜像加速
-        修改 \`/etc/containerd/config.toml\`，添加如下的配置：
-
-        \`\`\`yaml
-        [plugins."io.containerd.grpc.v1.cri".registry]
-          [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-              endpoint = ["https://<代理加速地址>"]
-            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."k8s.gcr.io"]
-              endpoint = ["https://<代理加速地址>"]
-            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."gcr.io"]
-              endpoint = ["https://<代理加速地址>"]
-            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."ghcr.io"]
-              endpoint = ["https://<代理加速地址>"]
-            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
-              endpoint = ["https://<代理加速地址>"]
-        \`\`\`
-
-        ## Podman 配置镜像加速
-        修改配置文件 \`/etc/containers/registries.conf\`，添加配置：
-
-        \`\`\`yaml
-        unqualified-search-registries = ['docker.io', 'k8s.gcr.io', 'gcr.io', 'ghcr.io', 'quay.io']
-
-        [[registry]]
-        prefix = "docker.io"
-        insecure = true
-        location = "registry-1.docker.io"
-
-        [[registry.mirror]]
-        location = "https://<代理加速地址>"
-
-        [[registry]]
-        prefix = "k8s.gcr.io"
-        insecure = true
-        location = "k8s.gcr.io"
-
-        [[registry.mirror]]
-        location = "https://<代理加速地址>"
-
-        [[registry]]
-        prefix = "gcr.io"
-        insecure = true
-        location = "gcr.io"
-
-        [[registry.mirror]]
-        location = "https://<代理加速地址>"
-
-        [[registry]]
-        prefix = "ghcr.io"
-        insecure = true
-        location = "ghcr.io"
-
-        [[registry.mirror]]
-        location = "https://<代理加速地址>"
-
-        [[registry]]
-        prefix = "quay.io"
-        insecure = true
-        location = "quay.io"
-
-        [[registry.mirror]]
-        location = "https://<代理加速地址>"
-        \`\`\`
-        `
-            }
-        ];
-
         let currentIndex = 0;
         let items = [];
         let autoPlayTimer;
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            loadConfig();
-        });
 
         function loadConfig() {
             // 加载菜单项
@@ -750,20 +721,8 @@
         }
 
 
-        // 模拟的 Docker 镜像数据
-        const mockDockerImages = [
-            { repo_name: "nginx", is_official: true, star_count: 15000, short_description: "Official build of Nginx" },
-            { repo_name: "ubuntu", is_official: true, star_count: 12000, short_description: "Ubuntu is a Debian-based Linux operating system" },
-            { repo_name: "redis", is_official: true, star_count: 10000, short_description: "Redis is an open source key-value store" },
-            { repo_name: "elasticsearch", is_official: true, star_count: 8000, short_description: "Elasticsearch is a distributed search and analytics engine" },
-            { repo_name: "mongo", is_official: true, star_count: 7000, short_description: "MongoDB document databases provide high availability and easy scalability" },
-            { repo_name: "custom/app", is_official: false, star_count: 100, short_description: "A custom application image" },
-            { repo_name: "user/tool", is_official: false, star_count: 50, short_description: "A useful tool image" },
-            { repo_name: "company/service", is_official: false, star_count: 75, short_description: "A company service image" }
-        ];
-
-        function searchDockerHub() {
-            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+        async function searchDockerHub() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
             if (!searchTerm) {
                 alert('请输入搜索关键词');
                 return;
@@ -777,48 +736,70 @@
             document.getElementById('carousel').style.display = 'none';
             document.getElementById('backToTopBtn').style.display = 'block';
 
-            // 模拟搜索延迟
-            setTimeout(() => {
-                const results = mockDockerImages.filter(img => 
-                    img.repo_name.toLowerCase().includes(searchTerm) || 
-                    img.short_description.toLowerCase().includes(searchTerm)
-                );
+            try {
+                const response = await fetch(`${corsProxyUrl}https://hub.docker.com/v2/search/repositories/?query=${searchTerm}&page_size=10`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                const data = await response.json();
 
-                if (results.length > 0) {
-                    const officialImages = results.filter(result => result.is_official);
-                    const unofficialImages = results.filter(result => !result.is_official)
-                        .sort((a, b) => b.star_count - a.star_count)
-                        .slice(0, 5);
-
+                if (data.results && data.results.length > 0) {
                     searchResults.innerHTML = '';
-
-                    officialImages.forEach(result => {
-                        searchResults.appendChild(createResultItem(result, true));
-                    });
-
-                    unofficialImages.forEach(result => {
-                        searchResults.appendChild(createResultItem(result, false));
+                    data.results.forEach(result => {
+                        searchResults.appendChild(createResultItem(result));
                     });
                 } else {
                     searchResults.innerHTML = '未找到匹配的镜像';
                 }
-            }, 500);  // 500ms 延迟模拟网络请求
+            } catch (error) {
+                console.error('搜索出错:', error);
+                searchResults.innerHTML = '搜索时发生错误，请稍后重试';
+            }
         }
 
-        function createResultItem(result, isOfficial) {
-            const resultItem = document.createElement('div');
-            resultItem.className = `search-result-item ${isOfficial ? 'official-image' : ''}`;
+        // 回调函数来处理 JSONP 响应
+        function handleSearchResult(data) {
+            const searchResults = document.getElementById('searchResults');
+            if (data.results && data.results.length > 0) {
+                searchResults.innerHTML = '';
+                data.results.forEach(result => {
+                    searchResults.appendChild(createResultItem(result));
+                });
+            } else {
+                searchResults.innerHTML = '未找到匹配的镜像';
+            }
+        }
 
-            const officialBadge = isOfficial ? '<span class="official-badge">官方</span>' : '';
+        function createResultItem(result) {
+            const resultItem = document.createElement('div');
+            resultItem.className = `search-result-item ${result.is_official ? 'official-image' : ''}`;
+
+            const officialBadge = result.is_official ? '<span class="official-badge">官方</span>' : '';
             const stars = result.star_count !== undefined ? `<span class="stars">★ ${result.star_count}</span>` : '';
 
+            // 使用 repo_name 作为主要名称，如果不存在则使用 name
+            const displayName = result.repo_name || result.name || '未知名称';
+
             resultItem.innerHTML = `
-                <h3>${result.repo_name || '未知名称'} ${officialBadge}</h3>
-                <p>描述: ${result.short_description || '无描述'}</p>
+                <h3>${displayName} ${officialBadge}</h3>
+                <p>描述: ${result.short_description || result.description || '无描述'}</p>
                 <p>${stars}</p>
-                <button class="use-image-btn" onclick="useImage('${result.repo_name || ''}')">使用此镜像</button>
+                <button class="use-image-btn" onclick="useImage('${displayName}')">使用此镜像</button>
             `;
+
             return resultItem;
+        }
+
+
+        // 添加一个用于调试的函数
+        function logSearchResults(results) {
+            console.log('Search results:', results);
+            results.forEach(result => {
+                console.log('Image:', result.repo_name || result.name);
+                console.log('Description:', result.short_description || result.description);
+                console.log('---');
+            });
         }
 
         function useImage(imageName) {
@@ -831,35 +812,112 @@
             }
         }
 
+        // 添加一个简单的Markdown解析器
+        function parseMarkdown(markdown) {
+            // 预处理代码块，移除语言标识符并保持原有格式，包括缩进
+            markdown = markdown.replace(/```(\w*)\n([\s\S]*?)```/g, function(match, language, code) {
+                // 找到最小的缩进量
+                const lines = code.split('\n');
+                const minIndent = lines.reduce((min, line) => {
+                    if (line.trim().length === 0) return min;
+                    const indent = line.match(/^\s*/)[0].length;
+                    return Math.min(min, indent);
+                }, Infinity);
+
+                // 移除每行开头的最小缩进量，保留相对缩进
+                const trimmedCode = lines.map(line => line.slice(minIndent)).join('\n').trim();
+                
+                return '<pre><code>' + 
+                    trimmedCode.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+                    '</code></pre>';
+            });
+
+            // 处理单行代码
+            markdown = markdown.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+
+            // 其他 Markdown 规则保持不变
+            const rules = [
+                [/#{6}\s?([^\n]+)\n/g, '<h6>$1</h6>'],
+                [/#{5}\s?([^\n]+)\n/g, '<h5>$1</h5>'],
+                [/#{4}\s?([^\n]+)\n/g, '<h4>$1</h4>'],
+                [/#{3}\s?([^\n]+)\n/g, '<h3>$1</h3>'],
+                [/#{2}\s?([^\n]+)\n/g, '<h2>$1</h2>'],
+                [/#{1}\s?([^\n]+)\n/g, '<h1>$1</h1>'],
+                [/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'],
+                [/\*([^*]+)\*/g, '<em>$1</em>'],
+                [/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>'],
+                [/\n\s*\n/g, '</p><p>']
+            ];
+
+            rules.forEach(([rule, template]) => {
+                markdown = markdown.replace(rule, template);
+            });
+
+            // 处理列表
+            markdown = markdown.replace(/^\s*[-*+]\s+(.+)$/gm, '<li>$1</li>');
+            markdown = markdown.replace(/<\/li>\s*<li>/g, '</li><li>');
+            markdown = markdown.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            return '<p>' + markdown + '</p>';
+        }
+
 
         function fetchDocumentation() {
             const documentationText = document.getElementById('documentationText');
+            const hiddenDocumentation = document.getElementById('hiddenDocumentation');
 
-            if (documentationData.length > 0) {
-                const document = documentationData[0]; // 获取第一个（也是唯一的）文档
+            try {
+                // 使用自定义Markdown解析器解析内容
+                const parsedContent = parseMarkdown(hiddenDocumentation.innerHTML);
+                documentationText.innerHTML = parsedContent;
 
-                if (typeof marked !== 'function') {
-                    console.error('marked 库未正确加载');
-                    documentationText.innerHTML = '无法显示文档内容，请刷新页面后重试。';
-                    return;
-                }
+                // 给所有代码块添加样式
+                documentationText.querySelectorAll('pre').forEach((pre) => {
+                    pre.style.margin = '0';
+                    pre.style.padding = '0';
+                    pre.style.backgroundColor = '#f4f4f4';
+                    pre.style.borderRadius = '4px';
+                    pre.style.overflow = 'auto';
+                });
 
-                try {
-                    // 使用 marked 库解析 Markdown 内容
-                    const parsedContent = marked.parse(document.content);
-                    documentationText.innerHTML = `<h1>${document.title}</h1>${parsedContent}`;
+                documentationText.querySelectorAll('pre code').forEach((block) => {
+                    block.style.display = 'block';
+                    block.style.whiteSpace = 'pre';
+                    block.style.overflowX = 'auto';
+                    block.style.padding = '1em';
+                    block.style.fontFamily = 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace';
+                    block.style.fontSize = '14px';
+                    block.style.lineHeight = '1.5';
+                    block.style.tabSize = '4';
+                    block.style.hyphens = 'none';
+                    block.style.textAlign = 'left';
+                    block.style.wordBreak = 'normal';
+                    block.style.wordSpacing = 'normal';
+                    block.style.wordWrap = 'normal';
+                });
 
-                    // 给所有代码块添加样式
-                    documentationText.querySelectorAll('pre code').forEach((block) => {
-                        block.style.display = 'block';
-                        block.style.whiteSpace = 'pre-wrap';
-                    });
-                } catch (error) {
-                    console.error('解析 Markdown 时出错:', error);
-                    documentationText.innerHTML = '解析文档内容时出错，请稍后重试。';
-                }
-            } else {
-                documentationText.innerHTML = '暂无文档内容';
+                // 给内联代码添加样式
+                documentationText.querySelectorAll('code:not(pre code)').forEach((inlineCode) => {
+                    inlineCode.style.backgroundColor = '#f4f4f4';
+                    inlineCode.style.padding = '2px 4px';
+                    inlineCode.style.borderRadius = '4px';
+                    inlineCode.style.fontFamily = 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace';
+                    inlineCode.style.fontSize = '0.9em';
+                });
+
+                // 添加一些通用样式
+                documentationText.style.lineHeight = '1.6';
+                documentationText.style.fontSize = '16px';
+                documentationText.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
+                    heading.style.marginTop = '1.5em';
+                    heading.style.marginBottom = '0.5em';
+                });
+                documentationText.querySelectorAll('p').forEach((paragraph) => {
+                    paragraph.style.marginBottom = '1em';
+                });
+            } catch (error) {
+                console.error('解析 Markdown 时出错:', error);
+                documentationText.innerHTML = '解析文档内容时出错，请稍后重试。';
             }
             document.getElementById('carousel').style.display = 'none';
         }
@@ -883,7 +941,17 @@
         });
 
         // 初始化页面
-        switchTab('accelerate');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            loadConfig();
+            switchTab('accelerate');
+        });
     </script>
 </body>
 </html>
