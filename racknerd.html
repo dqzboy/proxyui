@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>超值VPS主机 | 多种套餐，满足您的所有需求</title>
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/racknerd.png" type="image/png">
+    <title>RackNerd VPS 套餐价格表</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -17,11 +14,6 @@
             --background-color: #f8f9fa;
             --text-color: #333;
             --border-color: #e0e0e0;
-            --badge-bg-color: #e74c3c;
-            --badge-text-color: white;
-            --back-to-top-bg: #4a90e2;
-            --back-to-top-color: white;
-            --back-to-top-hover-bg: #357ABD;
         }
 
         * {
@@ -35,237 +27,179 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 80px 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-
-        .header img {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 2em;
+            color: var(--primary-color);
         }
 
         .section {
-            background-color: white;
-            border-radius: 20px;
-            padding: 40px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .plan-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .plan-name {
+        .section-title {
             font-size: 1.5em;
-            font-weight: 600;
+            margin-bottom: 20px;
             color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .plan-price {
-            font-size: 2em;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        .renewal-price {
-            font-size: 0.9em;
-            color: var(--text-color);
-            margin-bottom: 20px;
-        }
-
-        .plan-features {
-            list-style-type: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-
-        .plan-features li {
-            margin-bottom: 10px;
-        }
-
-        .button-container {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
         }
 
-        .button {
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .price {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .action-btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 12px 25px;
+            padding: 8px 15px;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 5px;
+            font-size: 14px;
             transition: all 0.3s ease;
-            font-size: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
         }
 
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .dc02-badge {
-            background-color: var(--badge-bg-color);
-            color: var(--badge-text-color);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
             display: inline-block;
-            vertical-align: middle;
+            margin-left: 5px;
         }
 
         .note {
-            background: linear-gradient(135deg, #f6d365, #fda085);
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 20px;
-            color: #333;
-        }
-
-        .note h3 {
-            color: #333;
-            margin-bottom: 15px;
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
         }
 
         .note ul {
-            padding-left: 20px;
+            margin-left: 20px;
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .note li {
+            margin-bottom: 8px;
         }
 
-        .feature-item {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .promotion-tag {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 10px;
         }
 
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-item i {
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        /* 返回顶部按钮样式 */
         .back-to-top {
             position: fixed;
             bottom: 40px;
             right: 40px;
-            background-color: var(--back-to-top-bg);
-            color: var(--back-to-top-color);
-            padding: 10px 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            display: none;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
         .back-to-top:hover {
-            background-color: var(--back-to-top-hover-bg);
-            transform: scale(1.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .back-to-top i {
-            font-size: 20px;
+            font-size: 24px;
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+            .container {
+                padding: 10px;
             }
-
-            .header p {
-                font-size: 1em;
-            }
-
-            .plan-card {
-                padding: 20px;
-            }
-
-            .button {
+            
+            th, td {
+                padding: 8px;
                 font-size: 14px;
-                padding: 10px 20px;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .back-to-top i {
+                font-size: 20px;
             }
         }
     </style>
@@ -273,610 +207,449 @@
 <body>
     <div class="container">
         <header class="header">
-            <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/racknerd.png" alt="Logo" class="logo">
-            <h1>超越极限的VPS主机体验</h1>
-            <p>释放您的数字潜力，享受无与伦比的速度与性能，现在就以难以置信的价格启程！</p>
+            <h1>RackNerd VPS 套餐价格表</h1>
         </header>
 
-        <section class="section">
-            <h2>为什么选择我们？</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <i class="fas fa-rocket"></i>
-                    <h3>极速性能</h3>
-                    <p>采用最新硬件，确保您的应用始终保持高速运行</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>安全可靠</h3>
-                    <p>多重安全保障，为您的数据提供全方位防护</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-headset"></i>
-                    <h3>24/7支持</h3>
-                    <p>专业技术团队随时待命，解决您的任何问题</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-globe"></i>
-                    <h3>全球网络</h3>
-                    <p>多个数据中心，为您提供最佳的网络连接体验</p>
-                </div>
-            </div>
-        </section>
+        <div id="vps-tables"></div>
 
-        <section class="section">
-            <h2>RackNerd 2025 新年促销活动</h2>
-            <p>多个机房可选，限时特惠！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">入门套餐</div>
-                    <div class="plan-price">$11.29/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1GB</strong> 内存</li>
-                        <li><strong>24GB</strong> SSD存储</li>
-                        <li><strong>2TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=903" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">基础套餐</div>
-                    <div class="plan-price">$18.29/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>2GB</strong> 内存</li>
-                        <li><strong>40GB</strong> SSD存储</li>
-                        <li><strong>3.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=904" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$32.49/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>3.5GB</strong> 内存</li>
-                        <li><strong>65GB</strong> SSD存储</li>
-                        <li><strong>7TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=905" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$43.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>3核心</strong> CPU</li>
-                        <li><strong>4GB</strong> 内存</li>
-                        <li><strong>105GB</strong> SSD存储</li>
-                        <li><strong>9TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=906" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$59.99/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>4核心</strong> CPU</li>
-                        <li><strong>6GB</strong> 内存</li>
-                        <li><strong>140GB</strong> SSD存储</li>
-                        <li><strong>12TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=907" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        
-        <section class="section">
-            <h2>2024 黑色星期五 VPS 促销优惠活动</h2>
-            <p>多个机房可选，限时特惠！含DC02</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">入门套餐</div>
-                    <div class="plan-price">$10.99/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1GB</strong> 内存</li>
-                        <li><strong>20GB</strong> SSD存储</li>
-                        <li><strong>1.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=879" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">基础套餐</div>
-                    <div class="plan-price">$18.93/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2.5GB</strong> 内存</li>
-                        <li><strong>40GB</strong> SSD存储</li>
-                        <li><strong>3TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=880" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$27.89/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>3GB</strong> 内存</li>
-                        <li><strong>60GB</strong> SSD存储</li>
-                        <li><strong>5.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=881" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$39.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>3核心</strong> CPU</li>
-                        <li><strong>4.5GB</strong> 内存</li>
-                        <li><strong>100GB</strong> SSD存储</li>
-                        <li><strong>8.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=882" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$55.93/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>4核心</strong> CPU</li>
-                        <li><strong>5GB</strong> 内存</li>
-                        <li><strong>130GB</strong> SSD存储</li>
-                        <li><strong>12TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=883" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2024 端午节 VPS 促销优惠活动</h2>
-            <p>多个美国机房可选，限时特惠！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">入门套餐</div>
-                    <div class="plan-price">$12.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1.25GB</strong> 内存</li>
-                        <li><strong>20GB</strong> SSD存储</li>
-                        <li><strong>2TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=850" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">基础套餐</div>
-                    <div class="plan-price">$19.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2GB</strong> 内存</li>
-                        <li><strong>30GB</strong> SSD存储</li>
-                        <li><strong>4TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=851" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">进阶套餐</div>
-                    <div class="plan-price">$26.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>3GB</strong> 内存</li>
-                        <li><strong>45GB</strong> SSD存储</li>
-                        <li><strong>5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=852" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2024 中国春节 促销优惠活动</h2>
-            <p>特别优惠，庆祝春节！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">春节特惠 A</div>
-                    <div class="plan-price">$10.99/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1GB</strong> 内存</li>
-                        <li><strong>15GB</strong> SSD存储</li>
-                        <li><strong>2TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=838" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">春节特惠 B</div>
-                    <div class="plan-price">$16.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1.5GB</strong> 内存</li>
-                        <li><strong>25GB</strong> SSD存储</li>
-                        <li><strong>4TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=839" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">春节特惠 C</div>
-                    <div class="plan-price">$23.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2.5GB</strong> 内存</li>
-                        <li><strong>38GB</strong> SSD存储</li>
-                        <li><strong>6TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=840" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2024 新年 VPS 促销优惠活动</h2>
-            <p>有多个美国机房可选，2G 及以上配置可选洛杉矶 DC-02 机房 (可申请 IPv6 地址)。</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 A</div>
-                    <div class="plan-price">$11.49/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1GB</strong> 内存</li>
-                        <li><strong>21GB</strong> SSD存储</li>
-                        <li><strong>1.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=826" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 B</div>
-                    <div class="plan-price">$17.38/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>2GB</strong> 内存</li>
-                        <li><strong>35GB</strong> SSD存储</li>
-                        <li><strong>2.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=827" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 C</div>
-                    <div class="plan-price">$27.98/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>3GB</strong> 内存</li>
-                        <li><strong>45GB</strong> SSD存储</li>
-                        <li><strong>5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=828" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 D</div>
-                    <div class="plan-price">$37.38/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>4GB</strong> 内存</li>
-                        <li><strong>60GB</strong> SSD存储</li>
-                        <li><strong>8TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=829" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2023 黑色星期五套餐</h2>
-            <p>黑五限时特惠，性价比之选！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 A</div>
-                    <div class="plan-price">$10.18/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>768MB</strong> 内存</li>
-                        <li><strong>15GB</strong> SSD存储</li>
-                        <li><strong>1.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=792" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 B</div>
-                    <div class="plan-price">$16.98/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>2GB</strong> 内存</li>
-                        <li><strong>30GB</strong> SSD存储</li>
-                        <li><strong>2.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=793" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 C</div>
-                    <div class="plan-price">$25.49/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2.5GB</strong> 内存</li>
-                        <li><strong>50GB</strong> SSD存储</li>
-                        <li><strong>5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=794" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 D</div>
-                    <div class="plan-price">$38.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>4GB</strong> 内存配置</li>
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>80GB</strong> SSD存储</li>
-                        <li><strong>8TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=795" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2023 新年 促销优惠活动</h2>
-            <p>新年限时特惠，助力您的数字化之旅！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 A</div>
-                    <div class="plan-price">$10.18/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>512MB</strong> 内存</li>
-                        <li><strong>10GB</strong> SSD存储</li>
-                        <li><strong>1.5TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=734" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 B</div>
-                    <div class="plan-price">$12.98/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1GB</strong> 内存</li>
-                        <li><strong>25GB</strong> SSD存储</li>
-                        <li><strong>4TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=735" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">新年特惠 C</div>
-                    <div class="plan-price">$24.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2.5GB</strong> 内存</li>
-                        <li><strong>45GB</strong> SSD存储</li>
-                        <li><strong>6TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=736" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>2022 黑色星期五套餐</h2>
-            <p>新年特惠，助力您的数字化之旅！</p>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 A</div>
-                    <div class="plan-price">$10.28/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>768MB</strong> 内存</li>
-                        <li><strong>10GB</strong> SSD存储</li>
-                        <li><strong>1TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=695" class="button" target="_blank">立即购买</a>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 B</div>
-                    <div class="plan-price">$16.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>1核心</strong> CPU</li>
-                        <li><strong>1.5GB</strong> 内存</li>
-                        <li><strong>30GB</strong> SSD存储</li>
-                        <li><strong>3TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=696" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 C</div>
-                    <div class="plan-price">$28.55/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>2.5GB</strong> 内存</li>
-                        <li><strong>60GB</strong> SSD存储</li>
-                        <li><strong>7TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=697" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-name">黑五特惠 D</div>
-                    <div class="plan-price">$38.88/年</div>
-                    <div class="renewal-price">续费同价</div>
-                    <ul class="plan-features">
-                        <li><strong>4GB</strong> 内存配置</li>
-                        <li><strong>2核心</strong> CPU</li>
-                        <li><strong>80GB</strong> SSD存储</li>
-                        <li><strong>10TB/月</strong> 流量</li>
-                        <li><strong>1Gbps</strong> 端口</li>
-                    </ul>
-                    <div class="button-container">
-                        <a href="https://my.racknerd.com/aff.php?aff=12151&pid=698" class="button" target="_blank">立即购买</a>
-                        <span class="dc02-badge">有DC02 IP</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="note">
-            <h3>注意事项</h3>
+        <div class="note">
+            <h3>注意事项：</h3>
             <ul>
-                <li>建议购买至少 1GB 内存配置的 VPS ，以获得更好的使用体验。</li>
-                <li>如果分到了被墙的 IP 可以在购买后 <strong>72 小时</strong> 内免费更换 (点击 <strong>Change IP</strong> 按钮自助更换)，之后更换一次 IP 需支付 <strong>3</strong> 美元。</li>
-                <li>洛杉矶 (Los Angeles) DC-02 机房可免费提供多个 IPv6 地址，可以发工单询问与获取。</li>
-                <li>部分套餐包含 <strong>有DC02 IP</strong>，此机房网络质量优秀，建议优先选择。请在购买前确认您的需求。</li>
+                <li>建议购买至少 1GB 内存配置的 VPS，以获得更好的使用体验。</li>
+                <li>如果分到了被墙的 IP 可以在购买后 <strong>72 小时</strong> 内免费更换。</li>
+                <li>洛杉矶 (Los Angeles) DC-02 机房可免费提供多个 IPv6 地址。</li>
+                <li>部分套餐包含 <strong>DC02 IP</strong>，此机房网络质量优秀。</li>
             </ul>
-        </section>
+        </div>
     </div>
 
-    <!-- 返回顶部按钮 -->
-    <div class="back-to-top" id="backToTop">
+    <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
-    </div>
+    </a>
 
     <script>
-        // 返回顶部按钮显示与隐藏
-        const backToTopButton = document.getElementById('backToTop');
+        // VPS促销数据配置
+        const promotionData = {
+            // 2025新年促销活动
+            'promo_ny_2025': {
+                title: '2025 新年促销活动',
+                tag: '新年特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '1',
+                        storage: '24',
+                        bandwidth: '2',
+                        price: '11.29',
+                        pid: '903',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '2',
+                        storage: '40',
+                        bandwidth: '3.5',
+                        price: '18.29',
+                        pid: '904',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '2',
+                        ram: '3.5',
+                        storage: '65',
+                        bandwidth: '7',
+                        price: '32.49',
+                        pid: '905',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '3',
+                        ram: '4',
+                        storage: '105',
+                        bandwidth: '9',
+                        price: '43.88',
+                        pid: '906',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '4',
+                        ram: '6',
+                        storage: '140',
+                        bandwidth: '12',
+                        price: '59.99',
+                        pid: '907',
+                        hasDC02: false
+                    }
+                ]
+            },
+            
+            // 2024黑色星期五活动
+            'promo_bf_2024': {
+                title: '2024 黑色星期五 VPS 促销优惠活动',
+                tag: '黑五促销',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '1',
+                        storage: '20',
+                        bandwidth: '1.5',
+                        price: '10.99',
+                        pid: '879',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2.5',
+                        storage: '40',
+                        bandwidth: '3',
+                        price: '18.93',
+                        pid: '880',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '3',
+                        storage: '60',
+                        bandwidth: '5.5',
+                        price: '27.89',
+                        pid: '881',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '3',
+                        ram: '4.5',
+                        storage: '100',
+                        bandwidth: '8.5',
+                        price: '39.88',
+                        pid: '882',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '4',
+                        ram: '5',
+                        storage: '130',
+                        bandwidth: '12',
+                        price: '55.93',
+                        pid: '883',
+                        hasDC02: true
+                    }
+                ]
+            },
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
+            // 2024端午节活动
+            'promo_dragon_2024': {
+                title: '2024 端午节 VPS 促销优惠活动',
+                tag: '端午特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '1.25',
+                        storage: '20',
+                        bandwidth: '2',
+                        price: '12.88',
+                        pid: '850',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2',
+                        storage: '30',
+                        bandwidth: '4',
+                        price: '19.88',
+                        pid: '851',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '2',
+                        ram: '3',
+                        storage: '45',
+                        bandwidth: '5',
+                        price: '26.88',
+                        pid: '852',
+                        hasDC02: false
+                    }
+                ]
+            },
+
+            // 2024春节活动
+            'promo_spring_2024': {
+                title: '2024 中国春节 促销优惠活动',
+                tag: '春节特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '1',
+                        storage: '15',
+                        bandwidth: '2',
+                        price: '10.99',
+                        pid: '838',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '1.5',
+                        storage: '25',
+                        bandwidth: '4',
+                        price: '16.88',
+                        pid: '839',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2.5',
+                        storage: '38',
+                        bandwidth: '6',
+                        price: '23.88',
+                        pid: '840',
+                        hasDC02: true
+                    }
+                ]
+            },
+
+            // 2024新年活动
+            'promo_ny_2024': {
+                title: '2024 新年 VPS 促销优惠活动',
+                tag: '新年特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '1',
+                        storage: '21',
+                        bandwidth: '1.5',
+                        price: '11.49',
+                        pid: '826',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '2',
+                        storage: '35',
+                        bandwidth: '2.5',
+                        price: '17.38',
+                        pid: '827',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '3',
+                        storage: '45',
+                        bandwidth: '5',
+                        price: '27.98',
+                        pid: '828',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '4',
+                        storage: '60',
+                        bandwidth: '8',
+                        price: '37.38',
+                        pid: '829',
+                        hasDC02: true
+                    }
+                ]
+            },
+
+            // 2023黑色星期五活动
+            'promo_bf_2023': {
+                title: '2023 黑色星期五套餐',
+                tag: '黑五特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '0.75',
+                        storage: '15',
+                        bandwidth: '1.5',
+                        price: '10.18',
+                        pid: '792',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '2',
+                        storage: '30',
+                        bandwidth: '2.5',
+                        price: '16.98',
+                        pid: '793',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2.5',
+                        storage: '50',
+                        bandwidth: '5',
+                        price: '25.49',
+                        pid: '794',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '4',
+                        storage: '80',
+                        bandwidth: '8',
+                        price: '38.88',
+                        pid: '795',
+                        hasDC02: true
+                    }
+                ]
+            },
+
+            // 2023新年活动
+            'promo_ny_2023': {
+                title: '2023 新年 促销优惠活动',
+                tag: '新年特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '0.5',
+                        storage: '10',
+                        bandwidth: '1.5',
+                        price: '10.18',
+                        pid: '734',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '1',
+                        storage: '25',
+                        bandwidth: '4',
+                        price: '12.98',
+                        pid: '735',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2.5',
+                        storage: '45',
+                        bandwidth: '6',
+                        price: '24.88',
+                        pid: '736',
+                        hasDC02: true
+                    }
+                ]
+            },
+
+            // 2022黑色星期五活动
+            'promo_bf_2022': {
+                title: '2022 黑色星期五套餐',
+                tag: '黑五特惠',
+                plans: [
+                    {
+                        cpu: '1',
+                        ram: '0.75',
+                        storage: '10',
+                        bandwidth: '1',
+                        price: '10.28',
+                        pid: '695',
+                        hasDC02: false
+                    },
+                    {
+                        cpu: '1',
+                        ram: '1.5',
+                        storage: '30',
+                        bandwidth: '3',
+                        price: '16.88',
+                        pid: '696',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '2.5',
+                        storage: '60',
+                        bandwidth: '7',
+                        price: '28.55',
+                        pid: '697',
+                        hasDC02: true
+                    },
+                    {
+                        cpu: '2',
+                        ram: '4',
+                        storage: '80',
+                        bandwidth: '10',
+                        price: '38.88',
+                        pid: '698',
+                        hasDC02: true
+                    }
+                ]
             }
-        });
+        };
 
-        // 返回顶部按钮点击事件
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // 生成购买链接的函数
+        function generatePurchaseLink(pid) {
+            return `https://my.racknerd.com/aff.php?aff=12151&pid=${pid}`;
+        }
+
+        // 渲染表格的函数
+        function renderVPSTables() {
+            const container = document.getElementById('vps-tables');
+            
+            for (const [promoKey, promotion] of Object.entries(promotionData)) {
+                const section = document.createElement('div');
+                section.className = 'section';
+                
+                const tableHTML = `
+                    <h2 class="section-title">
+                        <span>${promotion.title}</span>
+                        <span class="promotion-tag">${promotion.tag}</span>
+                    </h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CPU</th>
+                                    <th>内存</th>
+                                    <th>存储</th>
+                                    <th>带宽</th>
+                                    <th>价格 <small style="font-weight: normal; color: #666;">(续费同价)</small></th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${promotion.plans.map(plan => `
+                                    <tr>
+                                        <td>${plan.cpu}核 ${plan.hasDC02 ? '<span class="dc02-badge">DC02</span>' : ''}</td>
+                                        <td>${plan.ram}GB</td>
+                                        <td>${plan.storage}GB</td>
+                                        <td>${plan.bandwidth}TB</td>
+                                        <td class="price">$${plan.price}/年</td>
+                                        <td>
+                                            <a href="${generatePurchaseLink(plan.pid)}" class="action-btn" target="_blank">购买</a>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                
+                section.innerHTML = tableHTML;
+                container.appendChild(section);
+            }
+        }
+
+        // 返回顶部功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
+
+        // 页面加载完成后渲染表格
+        document.addEventListener('DOMContentLoaded', renderVPSTables);
     </script>
 </body>
 </html>
