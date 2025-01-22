@@ -733,8 +733,11 @@
             <a href="/" class="logo-link">
                 <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" alt="Logo" class="logo">
             </a>
-            <nav class="nav-menu" id="navMenu">
-                <!-- 菜单项将通过 JavaScript 动态加载 -->
+            <nav class="nav-menu">
+                <a href="/">首页</a>
+                <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank">GitHub</a>
+                <a href="https://github.com/dqzboy/dqzboy/blob/main/.github/FUNDING.md" target="_blank">支持</a>
+                <a href="https://dqzboy.github.io/proxyui/racknerd" target="_blank">推广</a>
             </nav>
         </div>
     </header>
@@ -854,14 +857,6 @@
         // 设置当前年份
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        });
         
         let proxyDomain = ''; // 默认代理加速地址
         let currentIndex = 0;
@@ -1195,19 +1190,6 @@
 
                 if (config.logo) {
                     document.querySelector('.logo').src = config.logo;
-                }
-                if (config.menuItems && Array.isArray(config.menuItems)) {
-                    const navMenu = document.getElementById('navMenu');
-                    navMenu.innerHTML = ''; // 清空菜单
-                    config.menuItems.forEach(item => {
-                        const a = document.createElement('a');
-                        a.href = item.link;
-                        a.textContent = item.text;
-                        if (item.newTab) {
-                            a.target = '_blank';
-                        }
-                        navMenu.appendChild(a);
-                    });
                 }
                 if (config.proxyDomain) {
                     proxyDomain = config.proxyDomain;
