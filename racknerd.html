@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #f39c12;
-            --accent-color: #e74c3c;
+            --primary-color: #007bff; /* 更现代的主色 */
+            --secondary-color: #6c757d; /* 更柔和的辅助色 */
+            --accent-color: #dc3545; /* 强调色 */
             --background-color: #f8f9fa;
-            --text-color: #333;
-            --border-color: #e0e0e0;
+            --text-color: #495057; /* 更易读的文本颜色 */
+            --border-color: #dee2e6;
+            --table-header-bg: #e9ecef;
+            --table-row-hover-bg: #f2f2f2;
         }
 
         * {
@@ -27,40 +29,71 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
-            padding: 20px;
+            padding: 30px; /* 增加页面padding */
         }
 
-        。container {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px; /* 调整容器宽度 */
             margin: 0 auto;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: 40px; /* 增加header的margin */
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* 更强的阴影 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), #6610f2, #6f42c1);
         }
 
         .header h1 {
-            font-size: 2em;
+            font-size: 2.5em; /* 增大标题字体 */
             color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .section {
             margin-bottom: 40px;
             background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* 更强的阴影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
         .section-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 1.75em; /* 增大section title字体 */
+            margin-bottom: 25px;
             color: var(--primary-color);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            border-bottom: 2px solid var(--border-color); /* 增加下边框 */
+            padding-bottom: 15px;
         }
 
         .table-container {
@@ -70,90 +103,110 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             background: white;
+            border-radius: 10px;
+            overflow: hidden; /* 确保阴影和圆角正确显示 */
         }
 
         th, td {
-            padding: 12px;
+            padding: 16px 12px; /* 增加padding */
             text-align: center;
             border: 1px solid var(--border-color);
         }
 
         th {
-            background-color: #f8f9fa;
+            background-color: var(--table-header-bg);
             font-weight: 600;
             color: var(--primary-color);
         }
 
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
         tr:hover {
-            background-color: #f8f9fa;
+            background-color: var(--table-row-hover-bg);
         }
 
         .price {
             color: var(--accent-color);
             font-weight: bold;
+            font-size: 1.2em; /* 增大价格字体 */
         }
 
         .action-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
             color: white;
-            padding: 8px 15px;
+            padding: 10px 20px; /* 增大padding */
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 阴影效果 */
         }
 
         .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 更强的阴影 */
         }
 
-        .dc02-badge {
-            background-color: var(--accent-color);
+        .dc-badge {
+            background-color: var(--secondary-color);
             color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 13px;
             display: inline-block;
             margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .dc-badge.dc03 {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
         }
 
         .note {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 4px;
+            background-color: #fff8e1; /* 更柔和的背景色 */
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* 阴影效果 */
+        }
+
+        .note h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
         }
 
         .note ul {
-            margin-left: 20px;
+            margin-left: 25px;
+            list-style-type: disc;
         }
 
         .note li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .promotion-tag {
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8em;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
             margin-left: 10px;
         }
 
         .back-to-top {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 30px;
+            right: 30px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -163,7 +216,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1); /* 阴影效果 */
             z-index: 1000;
         }
 
@@ -178,28 +231,28 @@
         }
 
         .back-to-top i {
-            font-size: 24px;
+            font-size: 26px;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
             
             th, td {
-                padding: 8px;
-                font-size: 14px;
+                padding: 12px 8px;
+                font-size: 15px;
             }
 
             .back-to-top {
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
                 bottom: 20px;
                 right: 20px;
             }
 
             .back-to-top i {
-                font-size: 20px;
+                font-size: 22px;
             }
         }
     </style>
@@ -208,6 +261,7 @@
     <div class="container">
         <header class="header">
             <h1>RackNerd VPS 套餐价格表</h1>
+            <p>高性能VPS托管解决方案，满足您的各种网络需求</p>
         </header>
 
         <div id="vps-tables"></div>
@@ -242,6 +296,7 @@
                         bandwidth: '2',
                         price: '11.29',
                         pid: '903',
+                        hasDC03: true,
                         hasDC02: false
                     },
                     {
@@ -251,6 +306,7 @@
                         bandwidth: '3.5',
                         price: '18.29',
                         pid: '904',
+                        hasDC03: true,
                         hasDC02: false
                     },
                     {
@@ -260,7 +316,8 @@
                         bandwidth: '7',
                         price: '32.49',
                         pid: '905',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '3',
@@ -269,7 +326,8 @@
                         bandwidth: '9',
                         price: '43.88',
                         pid: '906',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '4',
@@ -278,7 +336,8 @@
                         bandwidth: '12',
                         price: '59.99',
                         pid: '907',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: true
                     }
                 ]
             },
@@ -295,7 +354,8 @@
                         bandwidth: '1.5',
                         price: '10.99',
                         pid: '879',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '2',
@@ -304,7 +364,8 @@
                         bandwidth: '3',
                         price: '18.93',
                         pid: '880',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '2',
@@ -313,7 +374,8 @@
                         bandwidth: '5.5',
                         price: '27.89',
                         pid: '881',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '3',
@@ -322,7 +384,8 @@
                         bandwidth: '8.5',
                         price: '39.88',
                         pid: '882',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '4',
@@ -331,7 +394,8 @@
                         bandwidth: '12',
                         price: '55.93',
                         pid: '883',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     }
                 ]
             },
@@ -348,7 +412,8 @@
                         bandwidth: '2',
                         price: '12.88',
                         pid: '850',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -357,7 +422,8 @@
                         bandwidth: '4',
                         price: '19.88',
                         pid: '851',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -366,7 +432,8 @@
                         bandwidth: '5',
                         price: '26.88',
                         pid: '852',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     }
                 ]
             },
@@ -383,7 +450,8 @@
                         bandwidth: '2',
                         price: '10.99',
                         pid: '838',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '1',
@@ -392,7 +460,8 @@
                         bandwidth: '4',
                         price: '16.88',
                         pid: '839',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -401,7 +470,8 @@
                         bandwidth: '6',
                         price: '23.88',
                         pid: '840',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     }
                 ]
             },
@@ -418,7 +488,8 @@
                         bandwidth: '1.5',
                         price: '11.49',
                         pid: '826',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '1',
@@ -427,7 +498,8 @@
                         bandwidth: '2.5',
                         price: '17.38',
                         pid: '827',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -436,7 +508,8 @@
                         bandwidth: '5',
                         price: '27.98',
                         pid: '828',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -445,7 +518,8 @@
                         bandwidth: '8',
                         price: '37.38',
                         pid: '829',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     }
                 ]
             },
@@ -462,7 +536,8 @@
                         bandwidth: '1.5',
                         price: '10.18',
                         pid: '792',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '1',
@@ -471,7 +546,8 @@
                         bandwidth: '2.5',
                         price: '16.98',
                         pid: '793',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -480,7 +556,8 @@
                         bandwidth: '5',
                         price: '25.49',
                         pid: '794',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -489,7 +566,8 @@
                         bandwidth: '8',
                         price: '38.88',
                         pid: '795',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     }
                 ]
             },
@@ -506,7 +584,8 @@
                         bandwidth: '1.5',
                         price: '10.18',
                         pid: '734',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '1',
@@ -515,7 +594,8 @@
                         bandwidth: '4',
                         price: '12.98',
                         pid: '735',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: false
                     },
                     {
                         cpu: '2',
@@ -524,7 +604,8 @@
                         bandwidth: '6',
                         price: '24.88',
                         pid: '736',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: false
                     }
                 ]
             },
@@ -541,7 +622,8 @@
                         bandwidth: '1',
                         price: '10.28',
                         pid: '695',
-                        hasDC02: false
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '1',
@@ -550,7 +632,8 @@
                         bandwidth: '3',
                         price: '16.88',
                         pid: '696',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '2',
@@ -559,7 +642,8 @@
                         bandwidth: '7',
                         price: '28.55',
                         pid: '697',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     },
                     {
                         cpu: '2',
@@ -568,7 +652,8 @@
                         bandwidth: '10',
                         price: '38.88',
                         pid: '698',
-                        hasDC02: true
+                        hasDC02: false,
+                        hasDC03: true
                     }
                 ]
             }
@@ -607,7 +692,11 @@
                             <tbody>
                                 ${promotion.plans.map(plan => `
                                     <tr>
-                                        <td>${plan.cpu}核 ${plan.hasDC02 ? '<span class="dc02-badge">DC02</span>' : ''}</td>
+                                        <td>
+                                            ${plan.cpu}核
+                                            ${plan.hasDC02 ? '<span class="dc-badge">DC02</span>' : ''}
+                                            ${plan.hasDC03 ? '<span class="dc-badge dc03">DC03</span>' : ''}
+                                        </td>
                                         <td>${plan.ram}GB</td>
                                         <td>${plan.storage}GB</td>
                                         <td>${plan.bandwidth}TB</td>
@@ -649,7 +738,22 @@
         });
 
         // 页面加载完成后渲染表格
-        document.addEventListener('DOMContentLoaded', renderVPSTables);
+        document.addEventListener('DOMContentLoaded', function() {
+            renderVPSTables();
+            
+            // 添加页面加载动画
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
     </script>
 </body>
 </html>
