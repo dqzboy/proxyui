@@ -165,123 +165,58 @@
     </footer>
 
     <script>
-        // 设置当前年份
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-            
-            // 版权保护
-            protectCopyright();
-        });
-        
-        // 版权保护函数
-        function protectCopyright() {
-            const footer = document.querySelector('.footer');
-            const expectedText = 'Docker-Proxy';
-            const expectedLink = 'https://github.com/dqzboy/Docker-Proxy';
-            
-            // 初始检查
-            validateCopyright();
-            
-            // 定期检查版权信息
-            setInterval(validateCopyright, 2000);
-            
-            function validateCopyright() {
-                const copyrightText = document.querySelector('.copyright-text');
-                const githubLink = document.querySelector('.footer a');
-                
-                if (!copyrightText || copyrightText.textContent !== expectedText || 
-                    !githubLink || githubLink.href !== expectedLink) {
-                    // 版权信息被篡改，恢复
-                    restoreCopyright();
-                }
-            }
-            
-            function restoreCopyright() {
-                footer.innerHTML = `<p>Copyright © <span id="currentYear">${new Date().getFullYear()}</span> <span class="copyright-text">Docker-Proxy</span> All Rights Reserved. <a href="https://github.com/dqzboy/Docker-Proxy" target="_blank">GitHub</a></p>`;
-            }
-        }
-        
-        let proxyDomain = ''; // 默认代理加速地址
-        let currentIndex = 0;
-        let items = [];
+        // 常量定义
+        const proxyDomain = 'registry-cdn.example.com'; // 模拟的代理域名
         let currentPage = 1;
-        let currentSearchTerm = '';
-        let totalPages = 1;
         let currentTagPage = 1;
         let currentImageData = null;
 
-        // 标签切换功能
-        function switchTab(tabName) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.content');
-            const features = document.querySelector('#searchContent .features');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-            // 更新为支持3个选项卡
-            let tabIndex = 1;
-            if (tabName === 'search') {
-                tabIndex = 2;
-                // 只有在没有搜索结果时显示底部特性说明
-                const searchResults = document.getElementById('searchResults');
-                if (!searchResults.innerHTML.trim()) {
-                    features.style.display = 'grid';
-                }
-            } else if (tabName === 'documentation') {
-                tabIndex = 3;
-            }
-            
-            document.querySelector(`.tab:nth-child(${tabIndex})`).classList.add('active');
-            document.getElementById(`${tabName}Content`).classList.add('active');
-            // 重置显示
-            if (document.getElementById('searchResultsContainer')) {
-                document.getElementById('searchResultsContainer').style.display = 'block';
-            }
-            if (document.getElementById('searchResultsList')) {
-                document.getElementById('searchResultsList').style.display = 'block';
-            }
-            if (document.getElementById('imageTagsView')) {
-                document.getElementById('imageTagsView').style.display = 'none';
-            }
-            document.getElementById('result').style.display = 'none';
-            document.getElementById('searchResults').style.display = 'none';
-            document.getElementById('paginationContainer').style.display = 'none';
+        // 配置数据模拟
+        const config = {
+            menuItems: [
+                { text: 'GitHub', link: 'https://github.com/dqzboy/Docker-Proxy', newTab: true },
+                { text: '文档', link: '#', newTab: false }
+            ]
+        };
 
-            if (tabName === 'documentation') {
-                fetchDocumentation();
-            } else if (tabName === 'accelerate') {
-                // 重置显示状态
-                document.querySelector('.quick-guide').style.display = 'block';
-                document.querySelector('.popular-images').style.display = 'block';
-                document.getElementById('result').style.display = 'none';
-                
-                const imageInput = document.getElementById('imageInput').value.trim();
-                if (imageInput) {
-                    generateCommands(imageInput);
-                }
-                document.getElementById('searchInput').value = '';
-                document.getElementById('searchResults').innerHTML = '';
-                document.querySelector('.popular-images').style.display = 'block';
+        // 搜索结果数据模拟
+        const mockSearchResults = [
+            {
+                name: 'nginx',
+                description: 'Official build of Nginx',
+                is_official: true,
+                star_count: 15000,
+                pull_count: 1000000
+            },
+            {
+                name: 'mysql',
+                description: 'MySQL is a widely used, open-source relational database',
+                is_official: true,
+                star_count: 12000,
+                pull_count: 900000
             }
-        }
+        ];
 
-        // 添加formatNumber函数定义
-        function formatNumber(num) {
-            if (num >= 1000000000) {
-                return (num >= 1500000000 ? '1B+' : '1B');
-            } else if (num >= 1000000) {
-                const m = Math.floor(num / 1000000);
-                return (m >= 100 ? '100M+' : m + 'M');
-            } else if (num >= 1000) {
-                const k = Math.floor(num / 1000);
-                return (k >= 100 ? '100K+' : k + 'K');
+        // 标签数据模拟
+        const mockTags = [
+            {
+                name: 'latest',
+                last_updated: '2024-01-20T10:00:00Z',
+                full_size: 150000000,
+                images: [
+                    { os: 'linux', architecture: 'amd64' },
+                    { os: 'linux', architecture: 'arm64' }
+                ]
+            },
+            {
+                name: '1.24',
+                last_updated: '2024-01-19T10:00:00Z',
+                full_size: 145000000,
+                images: [
+                    { os: 'linux', architecture: 'amd64' }
+                ]
             }
-            return num.toString();
-        }
+        ];
 
         // 生成加速命令
         function generateCommands(imageInput) {
@@ -376,6 +311,103 @@
             setTimeout(() => {
                 successDiv.remove();
             }, 1500);
+        }
+
+        // 修改后的搜索功能 - 使用模拟数据
+        async function searchDockerHub(page = 1) {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                showToast('请输入搜索关键词');
+                return;
+            }
+
+            currentPage = page;
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '<div class="loading-indicator">正在搜索...</div>';
+            searchResults.style.display = 'block';
+
+            // 隐藏底部特性说明
+            const features = document.querySelector('#searchContent .features');
+            features.style.display = 'none';
+
+            // 使用模拟数据
+            setTimeout(() => {
+                const filteredResults = mockSearchResults.filter(result => 
+                    result.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                if (filteredResults.length > 0) {
+                    searchResults.innerHTML = '';
+                    const officialImages = filteredResults.filter(result => result.is_official);
+                    const unofficialImages = filteredResults.filter(result => !result.is_official);
+
+                    officialImages.forEach(result => {
+                        searchResults.appendChild(createResultItem(result, true));
+                    });
+
+                    unofficialImages.forEach(result => {
+                        searchResults.appendChild(createResultItem(result, false));
+                    });
+
+                    document.getElementById('paginationContainer').style.display = 'flex';
+                } else {
+                    searchResults.innerHTML = '<div class="empty-result"><i class="fas fa-search"></i><p>未找到匹配的镜像</p></div>';
+                    document.getElementById('paginationContainer').style.display = 'none';
+                }
+            }, 500); // 模拟网络延迟
+        }
+
+        // 修改查看标签详情函数 - 使用模拟数据
+        function viewImageDetails(imageName, isOfficial, description, stars, pulls) {
+            currentImageData = {
+                name: imageName,
+                isOfficial: isOfficial,
+                description: decodeURIComponent(description || ''),
+                stars: stars,
+                pulls: pulls
+            };
+
+            const imageTagsView = document.getElementById('imageTagsView');
+            document.getElementById('searchResultsList').style.display = 'none';
+            imageTagsView.style.display = 'block';
+
+            // 使用模拟数据显示标签信息
+            displayImageDetails();
+        }
+
+        // 新增：显示镜像详情函数
+        function displayImageDetails() {
+            const imageTagsView = document.getElementById('imageTagsView');
+            imageTagsView.innerHTML = `
+                <div class="tag-header">
+                    <div class="tag-breadcrumb">
+                        <a href="javascript:void(0);" onclick="showSearchResults()">返回搜索结果</a>
+                    </div>
+                    <h2 id="currentImageTitle">${currentImageData.name}</h2>
+                    <p id="imageDescription" class="image-description">${currentImageData.description}</p>
+                    <div class="image-meta">
+                        <span><i class="fas fa-star"></i> ${formatNumber(currentImageData.stars)} 星标</span>
+                        <span><i class="fas fa-download"></i> ${formatNumber(currentImageData.pulls)} 下载</span>
+                    </div>
+                </div>
+
+                <div class="tag-actions">
+                    <div class="tag-search-container">
+                        <input type="text" id="tagSearchInput" placeholder="搜索TAG..." onkeyup="filterTags()">
+                        <button class="search-btn" onclick="filterTags()">
+                            <i class="fas fa-search"></i> 搜索
+                        </button>
+                    </div>
+                    <button id="loadAllTagsBtn" class="load-all-btn" onclick="loadAllTags()">
+                        <i class="fas fa-cloud-download-alt"></i> 加载全部TAG
+                    </button>
+                </div>
+
+                <div id="tagsResults"></div>
+            `;
+
+            // 显示模拟的标签数据
+            displayTags(mockTags);
         }
 
         // 改进的API请求函数，支持自动重试
