@@ -6,7 +6,393 @@
     <title>Docker镜像加速服务</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 复制 style.css 中的所有样式代码到这里 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        .content {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-right: none;
+        }
+
+        .input-group button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-right: none;
+        }
+
+        .search-container button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-container button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .pagination-container span {
+            margin: 0 10px;
+        }
+
+        .image-tags-view {
+            display: none;
+        }
+
+        .tag-header {
+            margin-bottom: 20px;
+        }
+
+        .tag-breadcrumb a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .tag-search-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tag-search-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-right: none;
+        }
+
+        .tag-search-container button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .command-terminal {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .command-terminal .terminal-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .command-terminal .terminal-button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .command-terminal .button-red {
+            background-color: #ff5f56;
+        }
+
+        .command-terminal .button-yellow {
+            background-color: #ffbd2e;
+        }
+
+        .command-terminal .button-green {
+            background-color: #27c93f;
+        }
+
+        .command-terminal pre {
+            margin: 0;
+        }
+
+        .command-terminal .copy-btn {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .copy-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .toast-notification.error {
+            background-color: #e74c3c;
+        }
+
+        .toast-notification.fade-out {
+            opacity: 0;
+        }
+
+        .loading-indicator {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .empty-result {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .retry-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .tag-table-container {
+            overflow-x: auto;
+        }
+
+        .tag-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tag-table th, .tag-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .tag-table th {
+            background-color: #f4f4f4;
+        }
+
+        .tag-os-arch {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tag-os-arch-item {
+            background-color: #eee;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 3px;
+        }
+
+        .tag-os-arch-more {
+            cursor: pointer;
+            color: #007bff;
+            margin: 5px;
+        }
+
+        .tag-os-arch-all {
+            display: none;
+            flex-wrap: wrap;
+        }
+
+        .tag-os-arch-all.show {
+            display: flex;
+        }
+
+        .tag-search-stats {
+            margin-bottom: 10px;
+        }
+
+        .tag-sort-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tag-sort-container label {
+            margin-right: 10px;
+        }
+
+        .tag-sort-container select {
+            padding: 5px;
+        }
+
+        .no-filter-results {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .message-container {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -179,6 +565,20 @@
             ]
         };
 
+        // 文档数据模拟 
+        const mockDocuments = [
+            {
+                id: 1,
+                title: "快速入门",
+                content: "# 快速入门\n使用Docker镜像加速服务非常简单..."
+            },
+            {
+                id: 2, 
+                title: "配置说明",
+                content: "# 配置说明\n详细的配置参数说明..."
+            }
+        ];
+
         // 搜索结果数据模拟
         const mockSearchResults = [
             {
@@ -197,7 +597,7 @@
             }
         ];
 
-        // 标签数据模拟
+        // 标签数据模拟 
         const mockTags = [
             {
                 name: 'latest',
@@ -1334,136 +1734,95 @@
 
         // 获取文档列表
         async function fetchDocumentation() {
-            try {
-                const response = await fetch('/api/documentation');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+            const documentList = document.getElementById('documentList');
+            const documentationText = document.getElementById('documentationText');
+            
+            documentList.innerHTML = '<h2>文档列表</h2>';
+            const ul = document.createElement('ul');
+            
+            mockDocuments.forEach(doc => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = 'javascript:void(0);';
+                link.textContent = doc.title;
+                link.onclick = () => {
+                    document.querySelectorAll('#documentList a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                    showDocument(doc.id);
+                };
+                li.appendChild(link);
+                ul.appendChild(li);
+            });
+
+            documentList.appendChild(ul);
+            
+            // 默认显示第一篇文档
+            if(mockDocuments[0]) {
+                const firstLink = ul.querySelector('a');
+                if(firstLink) {
+                    firstLink.classList.add('active');
+                    showDocument(mockDocuments[0].id);
                 }
-                const documents = await response.json();
-                console.log('Fetched documents:', documents);
-                const documentList = document.getElementById('documentList');
-                const documentationText = document.getElementById('documentationText');
-                
-                if (Array.isArray(documents) && documents.length > 0) {
-                    documentList.innerHTML = '<h2>文档列表</h2>';
-                    const ul = document.createElement('ul');
-                    documents.forEach(doc => {
-                        if (doc && doc.id && doc.title) {
-                            const li = document.createElement('li');
-                            const link = document.createElement('a');
-                            link.href = 'javascript:void(0);';
-                            link.textContent = doc.title;
-                            link.onclick = () => {
-                                // 移除其他链接的active类
-                                document.querySelectorAll('#documentList a').forEach(a => a.classList.remove('active'));
-                                // 添加当前链接的active类
-                                link.classList.add('active');
-                                showDocument(doc.id);
-                            };
-                            li.appendChild(link);
-                            ul.appendChild(li);
-                        }
-                    });
-                    documentList.appendChild(ul);
+            }
+        }
+
+        // 修改showDocument函数使用mock数据
+        function showDocument(id) {
+            const doc = mockDocuments.find(d => d.id === id);
+            const documentationText = document.getElementById('documentationText');
+            
+            if(doc) {
+                documentationText.innerHTML = `<h2>${doc.title}</h2>${marked.parse(doc.content)}`;
+                // 为所有代码块添加复制按钮和终端样式
+                const codeBlocks = documentationText.querySelectorAll('pre code');
+                codeBlocks.forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+                    const code = codeBlock.textContent;
                     
-                    // 默认选中第一个文档
-                    if (documents[0] && documents[0].id) {
-                        const firstLink = ul.querySelector('a');
-                        if (firstLink) {
-                            firstLink.classList.add('active');
-                            showDocument(documents[0].id);
-                        }
-                    }
-                } else {
-                    documentationText.innerHTML = '暂无文档内容';
-                }
-            } catch (error) {
-                console.error('获取文档列表失败:', error);
-                document.getElementById('documentationText').innerHTML = '加载文档列表失败，请稍后再试。错误详情: ' + error.message;
+                    // 创建终端风格容器
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'command-terminal';
+                    wrapper.innerHTML = `
+                        <div class="terminal-header">
+                            <div class="terminal-button button-red"></div>
+                            <div class="terminal-button button-yellow"></div>
+                            <div class="terminal-button button-green"></div>
+                        </div>
+                    `;
+                    
+                    // 创建复制按钮
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-btn';
+                    copyButton.textContent = '复制';
+                    copyButton.onclick = () => copyToClipboard(code, copyButton);
+                    
+                    // 正确的DOM操作顺序
+                    pre.parentNode.insertBefore(wrapper, pre);  // 1. 先将wrapper插入到pre前面
+                    wrapper.appendChild(pre);                   // 2. 将pre移动到wrapper内
+                    pre.appendChild(copyButton);                // 3. 将复制按钮添加到pre内
+                });
+            } else {
+                documentationText.innerHTML = '未找到文档';
             }
         }
 
-        async function showDocument(id) {
-            try {
-                console.log('Attempting to show document with id:', id);
-                const response = await fetch(`/api/documentation/${id}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 设置当前年份
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // 加载菜单项
+            const navMenu = document.getElementById('navMenu');
+            config.menuItems.forEach(item => {
+                const a = document.createElement('a');
+                a.href = item.link;
+                a.textContent = item.text;
+                if(item.newTab) {
+                    a.target = '_blank';
                 }
-                const documentData = await response.json();
-                console.log('Fetched document:', documentData);
-                const documentationText = document.getElementById('documentationText');
-                if (documentData && documentData.content && documentData.content.trim() !== '') {
-                    // 渲染文档内容
-                    documentationText.innerHTML = `<h2>${documentData.title || '无标题'}</h2>` + marked.parse(documentData.content);
-                    // 为所有代码块添加复制按钮和终端样式
-                    const codeBlocks = documentationText.querySelectorAll('pre code');
-                    codeBlocks.forEach((codeBlock) => {
-                        const pre = codeBlock.parentElement;
-                        const code = codeBlock.textContent;
-                        
-                        // 创建终端风格容器
-                        const wrapper = document.createElement('div');
-                        wrapper.className = 'command-terminal';
-                        wrapper.innerHTML = `
-                            <div class="terminal-header">
-                                <div class="terminal-button button-red"></div>
-                                <div class="terminal-button button-yellow"></div>
-                                <div class="terminal-button button-green"></div>
-                            </div>
-                        `;
-                        
-                        // 创建复制按钮
-                        const copyButton = document.createElement('button');
-                        copyButton.className = 'copy-btn';
-                        copyButton.textContent = '复制';
-                        copyButton.onclick = () => copyToClipboard(code, copyButton);
-                        
-                        // 正确的DOM操作顺序
-                        pre.parentNode.insertBefore(wrapper, pre);  // 1. 先将wrapper插入到pre前面
-                        wrapper.appendChild(pre);                   // 2. 将pre移动到wrapper内
-                        pre.appendChild(copyButton);                // 3. 将复制按钮添加到pre内
-                    });
-                } else {
-                    documentationText.innerHTML = '该文档没有内容或格式不正确';
-                }
-            } catch (error) {
-                console.error('获取文档内容失败:', error);
-                document.getElementById('documentationText').innerHTML = '加载文档内容失败，请稍后再试。错误详情: ' + error.message;
-            }
-        }
-
-        // 获取并加载配置
-        async function loadConfig() {
-            try {
-                const response = await fetch('/api/config');
-                const config = await response.json();
-                if (config.logo) {
-                    document.querySelector('.logo').src = config.logo;
-                }
-                if (config.menuItems && Array.isArray(config.menuItems)) {
-                    const navMenu = document.getElementById('navMenu');
-                    navMenu.innerHTML = ''; // 清空菜单
-                    config.menuItems.forEach(item => {
-                        const a = document.createElement('a');
-                        a.href = item.link;
-                        a.textContent = item.text;
-                        if (item.newTab) {
-                            a.target = '_blank';
-                        }
-                        navMenu.appendChild(a);
-                    });
-                }
-                if (config.proxyDomain) {
-                    proxyDomain = config.proxyDomain;
-                }
-                if (config.searchApiEndpoint) {
-                    window.searchApiEndpoint = config.searchApiEndpoint;
-                }
-            } catch (error) {
-                console.error('加载配置失败:', error);
-            }
-        }
+                navMenu.appendChild(a);
+            });
+        });
 
         function useImage(imageName) {
             if (imageName) {
@@ -1495,8 +1854,6 @@
                 setTimeout(() => toast.remove(), 300);
             }, 5000); // 延长显示时间到5秒，给用户更多时间阅读
         }
-
-        loadConfig();
 
         // 添加缺失的showSearchResults函数
         function showSearchResults() {
