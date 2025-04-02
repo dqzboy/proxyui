@@ -16,7 +16,12 @@
                 <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" alt="Logo" class="logo">
             </a>
             <nav class="nav-menu" id="navMenu">
-                <!-- 菜单项通过 JavaScript 动态加载 -->
+                <!-- 固定的菜单项 -->
+                <ul class="nav-list">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="https://github.com/dqzboy/Docker-Proxy" target="_blank">GitHub</a></li>
+                    <li><a href="https://dqzboy.github.io/proxyui/racknerd" target="_blank">VPS推荐</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -156,8 +161,34 @@
 
         <!-- 文档内容 -->
         <div id="documentationContent" class="content">
-            <div id="documentList"></div>
-            <div id="documentationText"></div>
+            <div id="documentList">
+                <h2>文档目录</h2>
+                <ul class="doc-list">
+                    <li class="doc-item" data-id="docker-config">
+                        <a href="javascript:void(0)" onclick="showDocContent('docker-config')" class="active">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Docker 配置镜像加速</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="documentationText">
+                <div class="doc-content">
+                    <h1>Docker 配置镜像加速</h1>
+                    <p>修改文件 <code>/etc/docker/daemon.json</code>（如果不存在则创建）</p>
+                    <pre><code>sudo mkdir -p /etc/docker
+sudo vi /etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://&lt;代理加速地址&gt;"]
+}
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker</code></pre>
+                </div>
+                <div class="doc-meta">
+                    <span>最后更新: 2025-04-01</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -197,6 +228,26 @@
         document.querySelector(`.tab:nth-child(${tabIndex})`).classList.add('active');
         document.getElementById(`${tabName}Content`).classList.add('active');
     }
+    
+    // 显示文档内容
+    function showDocContent(docId) {
+        // 高亮选中的文档项
+        const docLinks = document.querySelectorAll('.doc-list li a');
+        docLinks.forEach(link => {
+            if (link.parentElement.dataset.id === docId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // 如果有多个文档，这里可以根据docId显示不同内容
+    }
+    
+    // 初始化时设置年份
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
     </script>
 </body>
 </html>
