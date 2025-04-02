@@ -6,8 +6,8 @@
     <title>Docker镜像加速服务</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="js/nav-menu.js"></script>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/dqzboy/proxyui/refs/heads/main/style.css">
+    <script src="https://raw.githubusercontent.com/dqzboy/proxyui/refs/heads/main/nav-menu.js"></script>
 </head>
 <body>
     <header class="header">
@@ -1630,18 +1630,18 @@
                         console.error('Markdown解析失败:', error);
                         // 发生错误时，仍然显示原始Markdown内容 + Meta
                         container.innerHTML = ` 
-                            <div class="doc-content">${doc.content}</div>
+                            <div class="doc-content">${doc。content}</div>
                             <div class="doc-meta">
-                                ${doc.lastUpdated || doc.updatedAt ? `<span>最后更新: ${new Date(doc.lastUpdated || doc.updatedAt).toLocaleDateString('zh-CN')}</span>` : ''}
+                                ${doc。lastUpdated || doc.updatedAt ? `<span>最后更新: ${new Date(doc.lastUpdated || doc.updatedAt).toLocaleDateString('zh-CN')}</span>` : ''}
                             </div>
                         `;
                     }
                 } else {
                     // marked 不可用时，直接显示内容 + Meta
                     container.innerHTML = ` 
-                        <div class="doc-content">${doc.content}</div>
+                        <div class="doc-content">${doc。content}</div>
                         <div class="doc-meta">
-                            ${doc.lastUpdated || doc.updatedAt ? `<span>最后更新: ${new Date(doc.lastUpdated || doc.updatedAt).toLocaleDateString('zh-CN')}</span>` : ''}
+                            ${doc。lastUpdated || doc.updatedAt ? `<span>最后更新: ${new Date(doc.lastUpdated || doc.updatedAt).toLocaleDateString('zh-CN')}</span>` : ''}
                         </div>
                     `;
                 }
