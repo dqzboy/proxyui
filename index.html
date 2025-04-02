@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dqzboy/proxyui@main/style.css">
     <script src="https://cdn.jsdelivr.net/gh/dqzboy/proxyui@main/js/nav-menu.js"></script>
     <style>
-        /* 添加菜单样式 */
-        .nav-list li a {
-            color: #333; /* 黑色字体 */
+        /* 添加菜单样式 - 增强优先级 */
+        .nav-menu .nav-list li a {
+            color: #333 !important; /* 黑色字体 - 强制优先级 */
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
@@ -20,9 +20,9 @@
             transition: background-color 0.3s, color 0.3s;
         }
         
-        .nav-list li a:hover {
-            background-color: #3D7CF4; /* 蓝色背景 */
-            color: #fff; /* 白色字体 */
+        .nav-menu .nav-list li a:hover {
+            background-color: #3D7CF4 !important; /* 蓝色背景 */
+            color: #fff !important; /* 白色字体 */
         }
     </style>
 </head>
