@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RackNerd VPS 套餐价格表</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>RackNerd VPS 套餐价格表 - 高性能云服务器优惠促销</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #007bff; /* 更现代的主色 */
-            --secondary-color: #6c757d; /* 更柔和的辅助色 */
-            --accent-color: #dc3545; /* 强调色 */
-            --background-color: #f8f9fa;
-            --text-color: #495057; /* 更易读的文本颜色 */
-            --border-color: #dee2e6;
-            --table-header-bg: #e9ecef;
-            --table-row-hover-bg: #f2f2f2;
+            --primary-color: #4361ee;
+            --secondary-color: #7209b7;
+            --accent-color: #f72585;
+            --success-color: #06d6a0;
+            --warning-color: #ffd60a;
+            --background-color: #f8fafc;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --table-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --table-row-hover-bg: #f1f5f9;
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --card-shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         * {
@@ -28,175 +33,331 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--background-color);
-            padding: 30px; /* 增加页面padding */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 动态背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            z-index: -1;
         }
 
         .container {
-            max-width: 1200px; /* 调整容器宽度 */
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .header {
+        .hero-section {
             text-align: center;
-            margin-bottom: 40px; /* 增加header的margin */
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* 更强的阴影 */
+            padding: 80px 0;
+            margin-bottom: 60px;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), #6610f2, #6f42c1);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
         }
 
-        .header h1 {
-            font-size: 2.5em; /* 增大标题字体 */
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .header p {
-            color: var(--secondary-color);
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .section {
-            margin-bottom: 40px;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* 更强的阴影 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
-        }
-        
         .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
         }
 
         .section-title {
-            font-size: 1.75em; /* 增大section title字体 */
-            margin-bottom: 25px;
-            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: var(--text-color);
             display: flex;
             align-items: center;
-            gap: 15px;
-            border-bottom: 2px solid var(--border-color); /* 增加下边框 */
-            padding-bottom: 15px;
+            gap: 20px;
+            font-weight: 700;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .promotion-tag {
+            background: linear-gradient(135deg, var(--accent-color), #ff6b9d);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .table-container {
             overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
             background: white;
-            border-radius: 10px;
-            overflow: hidden; /* 确保阴影和圆角正确显示 */
-        }
-
-        th, td {
-            padding: 16px 12px; /* 增加padding */
-            text-align: center;
-            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
         }
 
         th {
-            background-color: var(--table-header-bg);
+            background: var(--table-header-bg);
+            color: white;
+            padding: 20px 16px;
+            text-align: center;
             font-weight: 600;
-            color: var(--primary-color);
+            font-size: 1.1em;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        tr {
-            transition: background-color 0.3s ease;
+        td {
+            padding: 18px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        tr:hover {
+        tr:hover td {
             background-color: var(--table-row-hover-bg);
+            transform: scale(1.01);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         .price {
             color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.2em; /* 增大价格字体 */
+            font-weight: 700;
+            font-size: 1.3em;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .action-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 10px 20px; /* 增大padding */
+            padding: 12px 28px;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 30px;
             font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 阴影效果 */
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
         }
 
         .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 更强的阴影 */
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        .action-btn:hover::before {
+            left: 100%;
         }
 
         .dc-badge {
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--success-color), #00c896);
             color: white;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
             display: inline-block;
-            margin-left: 5px;
-            transition: all 0.3s ease;
+            margin-left: 8px;
+            box-shadow: 0 3px 10px rgba(6, 214, 160, 0.3);
         }
-        
+
         .dc-badge.dc03 {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
         }
 
         .note {
-            background-color: #fff8e1; /* 更柔和的背景色 */
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* 阴影效果 */
+            background: linear-gradient(135deg, #fff8e1, #fff3c4);
+            border-left: 6px solid var(--warning-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 6px 20px rgba(255, 214, 10, 0.15);
+            position: relative;
+        }
+
+        .note::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--warning-color);
+            font-size: 24px;
         }
 
         .note h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--text-color);
+            font-size: 1.3em;
+            margin-left: 40px;
         }
 
         .note ul {
-            margin-left: 25px;
-            list-style-type: disc;
+            margin-left: 65px;
+            list-style: none;
         }
 
         .note li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
         }
 
-        .promotion-tag {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.9em;
-            margin-left: 10px;
+        .note li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
         }
 
         .back-to-top {
@@ -205,8 +366,8 @@
             right: 30px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -215,8 +376,8 @@
             text-decoration: none;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1); /* 阴影效果 */
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
             z-index: 1000;
         }
 
@@ -226,56 +387,163 @@
         }
 
         .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
         }
 
         .back-to-top i {
-            font-size: 26px;
+            font-size: 24px;
         }
 
+        /* 添加浮动联系按钮 */
+        .contact-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--success-color), #00c896);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(6, 214, 160, 0.3);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .contact-float:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(6, 214, 160, 0.4);
+            animation: none;
+        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .hero-title {
+                font-size: 2.5em;
             }
             
+            .hero-content {
+                padding: 40px 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
             th, td {
                 padding: 12px 8px;
-                font-size: 15px;
+                font-size: 14px;
+            }
+
+            .back-to-top, .contact-float {
+                bottom: 20px;
+            }
+
+            .contact-float {
+                left: 20px;
+                padding: 12px 20px;
             }
 
             .back-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
                 right: 20px;
+                width: 50px;
+                height: 50px;
             }
+        }
 
-            .back-to-top i {
-                font-size: 22px;
+        /* 页面加载动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <h1>RackNerd VPS 套餐价格表</h1>
-            <p>高性能VPS托管解决方案，满足您的各种网络需求</p>
-        </header>
+        <section class="hero-section fade-in">
+            <div class="hero-content">
+                <h1 class="hero-title">RackNerd VPS 特惠专场</h1>
+                <p class="hero-subtitle">高性能云服务器，稳定可靠，价格优惠。全球数据中心，7x24小时技术支持，助力您的业务腾飞！</p>
+                
+                <!-- 特色功能展示 -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="feature-title">强大处理器</div>
+                        <div class="feature-desc">采用最新、最先进的 Intel Xeon 处理器</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-title">网络优化</div>
+                        <div class="feature-desc">网络配备Noction IRP优化设备，为您提供火箭般的速度！</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="feature-title">专业支持</div>
+                        <div class="feature-desc">需要服务器专家的支持吗？RackNerd全天候为您提供帮助。</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="feature-title">超值价格</div>
+                        <div class="feature-desc">每年续费同价，无需担心续费价格问题，无隐藏费用</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div id="vps-tables"></div>
+        <div class="main-content">
+            <div id="vps-tables"></div>
 
-        <div class="note">
-            <h3>注意事项：</h3>
-            <ul>
-                <li>建议购买至少 1GB 内存配置的 VPS，以获得更好的使用体验。</li>
-                <li>如果分到了被墙的 IP 可以在购买后 <strong>72 小时</strong> 内免费更换。</li>
-                <li>洛杉矶 (Los Angeles) DC-02 机房可免费提供多个 IPv6 地址。</li>
-                <li>部分套餐包含 <strong>DC02 IP</strong>，<strong>DC03 IP</strong>，可以优先考虑此机房VPS。</li>
-            </ul>
+            <div class="note fade-in">
+                <h3>购买须知与优势：</h3>
+                <ul>
+                    <li>推荐购买至少 1GB 内存配置，确保最佳性能体验</li>
+                    <li>如遇IP被墙问题，购买后72小时内可免费更换IP地址</li>
+                    <li>洛杉矶DC-02机房提供免费IPv6地址，支持更好的网络连接</li>
+                    <li>DC02/DC03机房线路优化，中国大陆访问速度更快</li>
+                    <li>所有套餐续费同价，无价格上涨风险</li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <!-- 浮动联系按钮 -->
+    <a href="https://my.racknerd.com/aff.php?aff=12151" class="contact-float" target="_blank">
+        <i class="fas fa-comments"></i> 立即咨询
+    </a>
 
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
@@ -287,7 +555,8 @@
             // 2025新年促销活动
             'promo_ny_2025': {
                 title: '2025 新年促销活动',
-                tag: '新年特惠',
+                tag: '🎉 新年特惠',
+                icon: 'fas fa-gift',
                 plans: [
                     {
                         cpu: '1',
@@ -345,7 +614,8 @@
             // 2024黑色星期五活动
             'promo_bf_2024': {
                 title: '2024 黑色星期五 VPS 促销优惠活动',
-                tag: '黑五促销',
+                tag: '🔥 黑五促销',
+                icon: 'fas fa-fire',
                 plans: [
                     {
                         cpu: '1',
@@ -403,7 +673,8 @@
             // 2024端午节活动
             'promo_dragon_2024': {
                 title: '2024 端午节 VPS 促销优惠活动',
-                tag: '端午特惠',
+                tag: '🏮 端午特惠',
+                icon: 'fas fa-star',
                 plans: [
                     {
                         cpu: '1',
@@ -441,7 +712,8 @@
             // 2024春节活动
             'promo_spring_2024': {
                 title: '2024 中国春节 促销优惠活动',
-                tag: '春节特惠',
+                tag: '🧧 春节特惠',
+                icon: 'fas fa-crown',
                 plans: [
                     {
                         cpu: '1',
@@ -668,12 +940,16 @@
         function renderVPSTables() {
             const container = document.getElementById('vps-tables');
             
-            for (const [promoKey, promotion] of Object.entries(promotionData)) {
+            Object.entries(promotionData).forEach(([promoKey, promotion], index) => {
                 const section = document.createElement('div');
-                section.className = 'section';
+                section.className = 'section fade-in';
+                section.style.animationDelay = `${index * 0.2}s`;
                 
                 const tableHTML = `
                     <h2 class="section-title">
+                        <div class="section-icon">
+                            <i class="${promotion.icon || 'fas fa-server'}"></i>
+                        </div>
                         <span>${promotion.title}</span>
                         <span class="promotion-tag">${promotion.tag}</span>
                     </h2>
@@ -681,28 +957,30 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>CPU</th>
-                                    <th>内存</th>
-                                    <th>存储</th>
-                                    <th>带宽</th>
-                                    <th>价格 <small style="font-weight: normal; color: #666;">(续费同价)</small></th>
-                                    <th>操作</th>
+                                    <th><i class="fas fa-microchip"></i> CPU核心</th>
+                                    <th><i class="fas fa-memory"></i> 内存</th>
+                                    <th><i class="fas fa-hdd"></i> 存储空间</th>
+                                    <th><i class="fas fa-wifi"></i> 流量</th>
+                                    <th><i class="fas fa-tag"></i> 价格/年</th>
+                                    <th><i class="fas fa-shopping-cart"></i> 立即购买</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${promotion.plans.map(plan => `
                                     <tr>
                                         <td>
-                                            ${plan.cpu}核
-                                            ${plan.hasDC02 ? '<span class="dc-badge">DC02</span>' : ''}
-                                            ${plan.hasDC03 ? '<span class="dc-badge dc03">DC03</span>' : ''}
+                                            ${plan.cpu}核心
+                                            ${plan.hasDC02 ? '<span class="dc-badge">DC02优化</span>' : ''}
+                                            ${plan.hasDC03 ? '<span class="dc-badge dc03">DC03优化</span>' : ''}
                                         </td>
-                                        <td>${plan.ram}GB</td>
-                                        <td>${plan.storage}GB</td>
+                                        <td>${plan.ram}GB DDR4</td>
+                                        <td>${plan.storage}GB SSD</td>
                                         <td>${plan.bandwidth}TB</td>
-                                        <td class="price">$${plan.price}/年</td>
+                                        <td class="price">$${plan.price}</td>
                                         <td>
-                                            <a href="${generatePurchaseLink(plan.pid)}" class="action-btn" target="_blank">购买</a>
+                                            <a href="${generatePurchaseLink(plan.pid)}" class="action-btn" target="_blank">
+                                                <i class="fas fa-rocket"></i> 立即购买
+                                            </a>
                                         </td>
                                     </tr>
                                 `).join('')}
@@ -713,7 +991,7 @@
                 
                 section.innerHTML = tableHTML;
                 container.appendChild(section);
-            }
+            });
         }
 
         // 返回顶部功能
@@ -742,16 +1020,17 @@
             renderVPSTables();
             
             // 添加页面加载动画
-            const sections = document.querySelectorAll('.section');
-            sections.forEach((section, index) => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                
-                setTimeout(() => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, 100 * index);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
         });
     </script>
