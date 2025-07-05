@@ -5,372 +5,529 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>推广</title>
     <link rel="icon" href="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/docker-proxy.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --background-color: #f5f7fa;
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #10b981;
+            --secondary-dark: #059669;
+            --background-color: #f8fafc;
+            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --card-background: #ffffff;
-            --text-color: #34495e;
-            --text-light: #7f8c8d;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
+            box-sizing: border-box;
         }
-        。container {
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
+
         header {
-            background-color: var(--primary-color);
+            background: var(--background-gradient);
             color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 300;
-        }
-        .search-bar {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .search-bar input {
-            width: 50%;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 25px 0 0 25px;
-            font-size: 16px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 0 25px 25px 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-bar button:hover {
-            background-color: #27ae60;
-        }
-        .featured-providers {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            gap: 20px;
-        }
-        .featured-provider {
-            flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 20px;
-            color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            overflow: hidden;
+            padding: 2rem 0;
+            box-shadow: var(--shadow-lg);
             position: relative;
-            height: 200px; /* 设置固定高度 */
+            overflow: hidden;
         }
-        .featured-provider:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        .featured-provider::before {
+
+        header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
-            transform: rotate(30deg);
-            transition: all 0.5s ease;
-        }
-        .featured-provider:hover::before {
-            transform: rotate(0deg);
-        }
-        .featured-provider h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-        }
-        .featured-provider p {
-            font-size: 14px;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-        }
-        .featured-provider .learn-more {
-            background-color: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        .featured-provider .learn-more:hover {
-            background-color: rgba(255,255,255,0.3);
-        }
-        .featured-provider img {
-            position: absolute;
-            bottom: -100%;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: bottom 0.3s ease;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
             z-index: 1;
         }
-        .featured-provider:hover img {
-            bottom: 0;
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
+
+        .search-section {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+            background: white;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-bar button {
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
         .provider-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
+
         .provider-card {
-            background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--card-background);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
         }
+
         .provider-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
         }
+
+        .provider-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--background-gradient);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .provider-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .provider-card img {
             width: 100%;
-            height: 160px;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
+
         .provider-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
+
         .provider-info {
-            padding: 20px;
+            padding: 1.5rem;
         }
+
         .provider-name {
-            font-size: 22px;
-            font-weight: 600;
-            margin: 0 0 15px 0;
-            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
         }
+
         .provider-description {
-            font-size: 15px;
+            font-size: 0.95rem;
             color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
+
         .provider-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
+
         .tag {
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 5px 12px;
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 13px;
-            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: var(--transition);
         }
+
         .tag:hover {
-            background-color: var(--primary-color);
             transform: scale(1.05);
         }
+
         .learn-more {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background-color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: 20px;
-            transition: all 0.2s ease;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.875rem;
         }
+
         .learn-more:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
+
         .apply-section {
-            background-color: var(--card-background);
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--card-background);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            margin-top: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
         }
+
         .apply-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
         }
+
+        .apply-section h3 {
+            color: var(--text-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
         .apply-section ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
         }
-        .apply-section .contact-info {
-            background-color: var(--background-color);
-            padding: 15px;
-            border-radius: 5px;
+
+        .apply-section li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
         }
+
+        .contact-info {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
         #backToTop {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--background-gradient);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
+            width: 56px;
+            height: 56px;
+            font-size: 1.25rem;
             cursor: pointer;
             display: none;
-            transition: background-color 0.3s, opacity 0.3s;
-            opacity: 0.7;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
             z-index: 1000;
         }
+
         #backToTop:hover {
-            background-color: var(--secondary-color);
-            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-bar input,
+            .search-bar button {
+                border-radius: var(--border-radius);
+            }
+            
+            .provider-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .apply-section {
+                padding: 2rem;
+            }
+        }
+
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .provider-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .provider-card:nth-child(1) { animation-delay: 0.1s; }
+        .provider-card:nth-child(2) { animation-delay: 0.2s; }
+        .provider-card:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Docker-Proxy 推广平台</h1>
+            <h1><i class="fas fa-rocket"></i> Docker-Proxy 推广平台</h1>
+            <p>连接优质服务提供商，助力您的业务发展</p>
         </div>
     </header>
 
-    <main class="container">
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="搜索广告提供商...">
-            <button id="searchButton">搜索</button>
-        </div>
-
-        <div class="provider-grid">
-            <div class="provider-card">
-                <img src="https://github.com/user-attachments/assets/86794cb9-90b8-4b85-a7e4-fae6e3ae781a" alt="zanzhu Ads">
-                <div class="provider-info">
-                    <h2 class="provider-name">RackNerd</h2>
-                    <p class="provider-description">RackNerd 是一家多元化的全球基础设施即服务解决方案提供商。</p>
-                    <div class="provider-tags">
-                        <span class="tag">性价比</span>
-                        <span class="tag">多元化</span>
-                        <span class="tag">多地区</span>
-                    </div>
-                    <a href="https://dqzboy.github.io/proxyui/racknerd" class="learn-more" target="_blank">了解更多</a>
-                </div>
+    <div class="search-section">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索广告提供商...">
+                <button id="searchButton">
+                    <i class="fas fa-search"></i>
+                    搜索
+                </button>
             </div>
-            <div class="provider-card">
-                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="zanzhu Ads">
-                <div class="provider-info">
-                    <h2 class="provider-name">推广平台</h2>
-                    <p class="provider-description">全球领先的平台，提供多样化的解决方案，助您触达目标受众。</p>
-                    <div class="provider-tags">
-                        <span class="tag">标签</span>
-                        <span class="tag">标签</span>
-                        <span class="tag">标签</span>
-                    </div>
-                    <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">了解更多</a>
-                </div>
-            </div>
-            <div class="provider-card">
-                <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="zanzhu Ads">
-                <div class="provider-info">
-                    <h2 class="provider-name">推广平台</h2>
-                    <p class="provider-description">全球领先的平台，提供多样化的解决方案，助您触达目标受众。</p>
-                    <div class="provider-tags">
-                        <span class="tag">标签</span>
-                        <span class="tag">标签</span>
-                        <span class="tag">标签</span>
-                    </div>
-                    <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">了解更多</a>
-                </div>
-            </div>
-        </div>
-
-    <div class="apply-section">
-        <h2>申请推广(赞助)</h2>
-        <h3>申请要求：</h3>
-        <ul>
-            <li>拥有合法的营业执照和相关资质</li>
-            <li>提供优质的广告服务或产品</li>
-            <li>具备良好的客户服务能力</li>
-            <li>遵守平台规则和行业道德准则</li>
-        </ul>
-        <h3>申请联系方式：</h3>
-        <div class="contact-info">
-            <a href="https://t.me/WiseAidBot" class="learn-more" target="_blank">点击咨询</a>
         </div>
     </div>
-</main>
 
-<button id="backToTop" title="返回顶部">↑</button>
+    <main class="main-content">
+        <div class="container">
+            <h2 class="section-title">精选服务提供商</h2>
+            <p class="section-subtitle">为您精心挑选的优质合作伙伴</p>
 
-<script>
-    function searchProviders() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-        const providerCards = document.querySelectorAll('.provider-card');
-        
-        providerCards.forEach(card => {
-            const providerName = card.querySelector('.provider-name').textContent.toLowerCase();
-            const providerDescription = card.querySelector('.provider-description').textContent.toLowerCase();
-            const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+            <div class="provider-grid">
+                <div class="provider-card">
+                    <img src="https://cdn.jsdelivr.net/gh/dqzboy/Images/dqzboy-proxy/racknerd.png" alt="RackNerd">
+                    <div class="provider-info">
+                        <h2 class="provider-name">RackNerd</h2>
+                        <p class="provider-description">RackNerd 是一家多元化的全球基础设施即服务解决方案提供商，提供高性能、可靠的云服务解决方案。</p>
+                        <div class="provider-tags">
+                            <span class="tag">性价比</span>
+                            <span class="tag">多元化</span>
+                            <span class="tag">多地区</span>
+                        </div>
+                        <a href="https://dqzboy.github.io/proxyui/racknerd" class="learn-more" target="_blank">
+                            了解更多
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="provider-card">
+                    <img src="https://cdn.jsdelivr.net/gh/dqzboy/Images/dqzboy-proxy/CloudCone.png" alt="推广平台">
+                    <div class="provider-info">
+                        <h2 class="provider-name">CloudCone</h2>
+                        <p class="provider-description">CloudCone 是一家以灵活计费、低价、稳定等特点受到用户欢迎的VPS服务商。﻿。</p>
+                        <div class="provider-tags">
+                            <span class="tag">CN2线路</span>
+                            <span class="tag">性价比</span>
+                            <span class="tag">全球IDC</span>
+                        </div>
+                        <a href="https://dqzboy.github.io/proxyui/CloudCone" class="learn-more" target="_blank">
+                            了解更多
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="provider-card">
+                    <img src="https://cdn.jsdelivr.net/gh/dqzboy/Blog-Image/BlogCourse/zanzhu.png" alt="推广平台">
+                    <div class="provider-info">
+                        <h2 class="provider-name">推广平台</h2>
+                        <p class="provider-description">专业的营销推广服务，为企业提供全方位的数字化营销解决方案，助力业务快速增长。</p>
+                        <div class="provider-tags">
+                            <span class="tag">专业服务</span>
+                            <span class="tag">全方位</span>
+                            <span class="tag">快速增长</span>
+                        </div>
+                        <a href="https://github.com/dqzboy/Docker-Proxy" class="learn-more" target="_blank">
+                            了解更多
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="apply-section">
+                <h2><i class="fas fa-handshake"></i> 申请推广(赞助)</h2>
+                <h3>申请要求：</h3>
+                <ul>
+                    <li>提供优质的广告服务或产品</li>
+                    <li>具备良好的客户服务能力</li>
+                    <li>遵守平台规则和行业道德准则</li>
+                </ul>
+                <h3>申请联系方式：</h3>
+                <div class="contact-info">
+                    <a href="https://t.me/WiseAidBot" class="learn-more" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                        点击咨询
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button id="backToTop" title="返回顶部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        function searchProviders() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const providerCards = document.querySelectorAll('.provider-card');
             
-            if (searchTerm === '' || providerName.includes(searchTerm) || providerDescription.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
+            providerCards.forEach(card => {
+                const providerName = card.querySelector('.provider-name').textContent.toLowerCase();
+                const providerDescription = card.querySelector('.provider-description').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                
+                if (searchTerm === '' || providerName.includes(searchTerm) || providerDescription.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 为搜索按钮添加点击事件监听器
+        document.getElementById('searchButton').addEventListener('click', searchProviders);
+
+        // 为搜索输入框添加回车键事件监听器
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProviders();
             }
         });
-    }
 
-    // 为搜索按钮添加点击事件监听器
-    document.getElementById('searchButton').addEventListener('click', searchProviders);
+        // 返回顶部按钮功能
+        const backToTopButton = document.getElementById('backToTop');
 
-    // 为搜索输入框添加回车键事件监听器
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            searchProviders();
-        }
-    });
-
-    // 返回顶部按钮功能
-    const backToTopButton = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.style.display = 'block';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    });
-
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
         });
-    });
-</script>
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
