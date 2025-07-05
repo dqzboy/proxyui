@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCone VPS - 高性能美国洛杉矶云服务器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2rem 0 0.8rem 0;
+            padding: 0.5rem 0;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-radius: 5px;
+        }
+        
+        .section-description {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+            font-size: 0.95rem;
+            color: #495057;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-left: 4px solid #667eea;
+            margin: 1rem 0;
+        }
+        
+        .website-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .website-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .website-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .buy-btn {
+            background: #48bb78;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .buy-btn:hover {
+            background: #38a169;
+            transform: scale(1.05);
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #e53e3e;
+        }
+        
+        .tips {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .tips h3 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+            border-left: none;
+            padding-left: 0;
+            background: none;
+            border-radius: 0;
+        }
+        
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+        
+        .promo-badge {
+            background: #e53e3e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            z-index: 1000;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            animation: bounceIn 0.6s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        }
+        
+        .back-to-top:active {
+            transform: translateY(-3px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(100px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-10px);
+            }
+            70% {
+                transform: scale(0.9) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CloudCone VPS</h1>
+            <p class="subtitle">高性能美国洛杉矶云服务器 | CN2优化线路 | 续费同价</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>🌟 CloudCone 简介</h2>
+            <p>CloudCone 成立于 2017 年，美国注册公司（怀俄明州 2017-000753144）。主营美国洛杉矶 MultaCom 机房的云服务器/VPS、独立服务器、电子邮件托管等业务。</p>
+            
+            <div class="highlight">
+                <strong>核心优势：</strong>
+                <ul>
+                    <li>🏢 VPS 基于 KVM 虚拟，采用自行研发的控制面板</li>
+                    <li>🌐 MultaCom 机房采用动态路由网络，电信网络走 CN2 线路</li>
+                    <li>⚡ 延迟和稳定性在非高峰时段都较为优秀</li>
+                    <li>💰 按秒计费、随删随用、定期备份服务</li>
+                    <li>💳 支持支付宝、Paypal、信用卡等方式付款</li>
+                </ul>
+            </div>
+            
+            <h3>官方网站</h3>
+            <div class="website-links">
+                <a href="https://app.cloudcone.com/?ref=12690" class="website-link" target="_blank">官方网站</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔥 2025年6月限量促销款 VPS</h2>
+            <div class="promo-badge">限时限量 · 随时缺货</div>
+            
+            <h3>标准 VPS</h3>
+            <div class="section-description">
+                美国西海岸洛杉矶 MultaCom 机房，千兆带宽，1 个 IPv4 地址，3 个 IPv6 地址，基于 KVM 虚拟，纯 SSD RAID 10 存储。
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>内存</th>
+                        <th>CPU</th>
+                        <th>硬盘(SSD)</th>
+                        <th>流量</th>
+                        <th>带宽</th>
+                        <th>价格(续费同价)</th>
+                        <th>购买链接</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1G</td>
+                        <td>1核</td>
+                        <td>14G</td>
+                        <td>1T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$20/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/355/create?token=ssd-vps-1&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>2G</td>
+                        <td>2核</td>
+                        <td>26G</td>
+                        <td>2T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$26/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/356/create?token=ssd-vps-2&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>3G</td>
+                        <td>3核</td>
+                        <td>41G</td>
+                        <td>3T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$36/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/357/create?token=ssd-vps-3&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>4G</td>
+                        <td>4核</td>
+                        <td>55G</td>
+                        <td>4T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$47/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/358/create?token=ssd-vps-4&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>8G</td>
+                        <td>8核</td>
+                        <td>111G</td>
+                        <td>5T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$90/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/359/create?token=ssd-vps-5&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>16G</td>
+                        <td>10核</td>
+                        <td>223G</td>
+                        <td>6T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$170/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/360/create?token=ssd-vps-6&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>SC2 云服务器</h3>
+            <div class="section-description">
+                美国西海岸洛杉矶 MultaCom 机房，千兆带宽，1 个 IPv4 地址，3 个 IPv6 地址，基于 KVM 虚拟，纯 SSD RAID 10 存储。
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>内存</th>
+                        <th>CPU</th>
+                        <th>硬盘(SSD)</th>
+                        <th>流量</th>
+                        <th>带宽</th>
+                        <th>价格(续费同价)</th>
+                        <th>购买链接</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2G</td>
+                        <td>3核</td>
+                        <td>50G</td>
+                        <td>4T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$59.82/年</td>
+                        <td><a href="https://app.cloudcone.com/compute/1459/create?token=cny-25-sc2-1&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>4G</td>
+                        <td>5核</td>
+                        <td>110G</td>
+                        <td>5T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$114.99/年</td>
+                        <td><a href="https://app.cloudcone.com/compute/1460/create?token=cny-25-sc2-2&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>8G</td>
+                        <td>9核</td>
+                        <td>220G</td>
+                        <td>6T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$225.70/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/compute/1455/create?token=bf-24-sc2-3&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>16G</td>
+                        <td>12核</td>
+                        <td>550G</td>
+                        <td>8T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$426.22/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/compute/1456/create?token=bf-24-sc2-4&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>32G</td>
+                        <td>15核</td>
+                        <td>990G</td>
+                        <td>10T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$853.16/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/compute/1457/create?token=bf-24-sc2-5&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>64G</td>
+                        <td>20核</td>
+                        <td>1900G</td>
+                        <td>10T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$1678.29/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/compute/1458/create?token=bf-24-sc2-6&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📋 常规款 VPS</h2>
+            
+            <h3>年付 VPS</h3>
+            <div class="section-description">
+                采用 Intel Xeon E 或 Silver 处理器，SSD Cached RAID 10 存储，默认 1 个 IPv4，1Gbps 带宽，支持硬件配置升级。
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>内存</th>
+                        <th>CPU</th>
+                        <th>硬盘</th>
+                        <th>流量</th>
+                        <th>带宽</th>
+                        <th>价格(续费同价)</th>
+                        <th>购买链接</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1G</td>
+                        <td>1核</td>
+                        <td>30G</td>
+                        <td>1T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$21.6/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/1/create?token=vps-1&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>2G</td>
+                        <td>2核</td>
+                        <td>50G</td>
+                        <td>3T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$35.88/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/2/create?token=vps-2&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                    <tr>
+                        <td>3.5G</td>
+                        <td>3核</td>
+                        <td>70G</td>
+                        <td>6T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$54/年</td>
+                        <td><a href="https://app.cloudcone.com.cn/vps/3/create?token=vps-3&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>小时计费/月付 VPS</h3>
+            <div class="section-description">
+                即时部署、随时删除，可自定义配置，免费附带自动备份和快照等功能。
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>内存</th>
+                        <th>CPU</th>
+                        <th>硬盘</th>
+                        <th>流量</th>
+                        <th>带宽</th>
+                        <th>价格</th>
+                        <th>购买链接</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1G</td>
+                        <td>1核</td>
+                        <td>20G</td>
+                        <td>3T/月</td>
+                        <td>1Gbps</td>
+                        <td class="price">$0.00699/小时</td>
+                        <td><a href="https://app.cloudcone.com.cn/compute/create?ref=12690&cpu=1&ram=1024&disk=20" class="buy-btn" target="_blank">点击购买</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="tips">
+                <h3>💡 购买须知</h3>
+                <ul>
+                    <li><strong>预充值：</strong>购买需先注册账号预先充值，充值支持支付宝、Paypal、信用卡等支付方式</li>
+                    <li><strong>IP 更换：</strong>开到被墙 IP 地址，SC2云服务器可以删掉实例重新购买，或提交工单支付 2 美元更换 IP</li>
+                    <li><strong>IPv6 地址：</strong>部分套餐附赠 IPv6 地址，在 Networking 菜单开启</li>
+                    <li><strong>自动备份：</strong>部分套餐附赠定期备份功能，在 Backup 菜单开启（每天滚动备份，保持三个备份）</li>
+                    <li><strong>套餐区别：</strong>SC2 VPS 性能更好，有更好的 CPU 和更快的 SSD RAID 10 存储，免费附带自动备份和快照功能</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <a href="#" class="back-to-top" id="backToTop">
+        ↑
+    </a>
+
+    <script>
+        // 返回顶部功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
