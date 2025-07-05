@@ -19,7 +19,7 @@
             background-color: #f5f5f5;
         }
         
-        。container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -638,7 +638,7 @@
                                     <th>内存</th>
                                     <th>存储空间</th>
                                     <th>流量</th>
-                                    <th>价格/年</th>
+                                    <th>价格(续费同价)</th>
                                     <th>立即购买</th>
                                 </tr>
                             </thead>
@@ -653,7 +653,7 @@
                                         <td>${plan.ram}GB</td>
                                         <td>${plan.storage}GB</td>
                                         <td>${plan.bandwidth}TB/月</td>
-                                        <td class="price">$${plan.price}</td>
+                                        <td class="price">$${plan.price}/年</td>
                                         <td>
                                             <a href="${generatePurchaseLink(plan.pid)}" class="action-btn" target="_blank">
                                                 立即购买
