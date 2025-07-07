@@ -24,7 +24,7 @@
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --border-radius: 12px;
             --border-radius-lg: 16px;
-            --transition: 全部 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -173,13 +173,15 @@
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-md);
             overflow: hidden;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 1px solid var(--border-color);
             position: relative;
+            transform: translateZ(0);
+            will-change: transform, box-shadow, border-color;
         }
 
         .provider-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px) translateZ(0);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
@@ -193,7 +195,8 @@
             height: 4px;
             background: var(--background-gradient);
             transform: scaleX(0);
-            transition: var(--transition);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .provider-card:hover::before {
@@ -204,11 +207,12 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
         }
 
         .provider-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .provider-info {
@@ -247,7 +251,7 @@
         }
 
         .tag:hover {
-            transform: scale(1.05);
+            transform: scale(1.08) translateZ(0);
         }
 
         .learn-more {
@@ -259,14 +263,15 @@
             color: white;
             text-decoration: none;
             border-radius: var(--border-radius);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             font-weight: 600;
             font-size: 0.875rem;
+            will-change: transform, box-shadow;
         }
 
         .learn-more:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px) translateZ(0);
             box-shadow: var(--shadow-lg);
         }
 
@@ -329,7 +334,7 @@
         }
 
         #backToTop:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px) translateZ(0);
             box-shadow: var(--shadow-xl);
         }
 
@@ -369,7 +374,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-            到 {
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
