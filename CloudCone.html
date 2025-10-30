@@ -3,8 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudCone VPS - 高性能美国洛杉矶云服务器</title>
+    <title>CloudCone VPS - 高性能美国洛杉矶云服务器 | CN2优化线路</title>
+    <meta name="description" content="CloudCone提供高性能洛杉矶云服务器，CN2优化线路，按秒计费，灵活使用。企业级VPS解决方案，值得信赖。">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-primary: #0ea5e9;
+            --color-primary-dark: #0284c7;
+            --color-primary-light: #38bdf8;
+            --color-secondary: #f97316;
+            --color-success: #22c55e;
+            --color-warning: #eab308;
+            --color-danger: #ef4444;
+            
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
+            
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,602 +74,1116 @@
         }
         
         body {
-            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            font-family: var(--font-sans);
+            font-size: var(--font-size-base);
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            color: var(--color-gray-900);
+            background: var(--color-gray-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        .container {
-            max-width: 1200px;
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-gray-200);
+            z-index: 1000;
+            transition: all var(--transition-base);
+        }
+        
+        .nav-container {
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .section {
-            background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        h2 {
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 2rem 0 0.8rem 0;
-            padding: 0.5rem 0;
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
-            border-radius: 5px;
-        }
-        
-        .section-description {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e9ecef;
-            font-size: 0.95rem;
-            color: #495057;
-            line-height: 1.5;
-        }
-        
-        .highlight {
-            background: #e8f4f8;
-            padding: 1rem;
-            border-left: 4px solid #667eea;
-            margin: 1rem 0;
-        }
-        
-        .website-links {
+            padding: var(--space-md) var(--space-xl);
             display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .website-link {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
+        .nav-logo {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-primary);
             text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
         }
         
-        .website-link:hover {
-            background: #5a67d8;
-            transform: translateY(-2px);
+        .nav-menu {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
         }
         
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: white;
-            border-radius: 8px;
+        .nav-link {
+            color: var(--color-gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 8rem var(--space-xl) 6rem;
+            margin-top: 4rem;
             overflow: hidden;
         }
         
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .buy-btn {
-            background: #48bb78;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-        
-        .buy-btn:hover {
-            background: #38a169;
-            transform: scale(1.05);
-        }
-        
-        .price {
-            font-weight: bold;
-            color: #e53e3e;
-        }
-        
-        .tips {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-        }
-        
-        .tips h3 {
-            color: #856404;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            font-weight: normal;
-            margin: 0 0 0.5rem 0;
-            padding: 0;
-            border-left: none;
-            padding-left: 0;
-            background: none;
-            border-radius: 0;
-        }
-        
-        ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        
-        li {
-            margin: 0.5rem 0;
-        }
-        
-        .promo-badge {
-            background: #e53e3e;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            text-decoration: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-            z-index: 1000;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .back-to-top::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
         }
         
-        .back-to-top:hover::before {
-            opacity: 1;
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-xl);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            font-weight: 400;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto var(--space-2xl);
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-2xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+        
+        .stats {
+            background: white;
+            padding: var(--space-3xl) var(--space-xl);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-2xl);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--color-gray-50) 0%, white 100%);
+            transition: all var(--transition-base);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-2xl);
+        }
+        
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+            font-weight: 500;
+        }
+        
+        .features {
+            padding: var(--space-3xl) var(--space-xl);
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-3xl);
+        }
+        
+        .section-label {
+            display: inline-block;
+            padding: var(--space-sm) var(--space-lg);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.02em;
+        }
+        
+        .section-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        .features-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+        }
+        
+        .feature-card {
+            padding: var(--space-2xl);
+            background: white;
+            border: 2px solid var(--color-gray-100);
+            border-radius: var(--radius-2xl);
+            transition: all var(--transition-base);
+        }
+        
+        .feature-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .feature-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .feature-description {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        .pricing {
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--color-gray-50);
+        }
+        
+        .pricing-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .pricing-category {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .category-header {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .category-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-md);
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #ea580c 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Halloween Special Badge */
+        .category-badge.halloween-badge {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+            }
+            50% { 
+                opacity: 0.9;
+                box-shadow: 0 0 20px rgba(255, 107, 0, 0.8);
+            }
+        }
+        
+        .category-description {
+            color: var(--color-gray-600);
+            font-size: var(--font-size-base);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .pricing-table {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table thead {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+        }
+        
+        .pricing-table th {
+            padding: var(--space-lg);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-table td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        
+        .pricing-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+        
+        .pricing-table tbody tr:hover {
+            background: var(--color-gray-50);
+        }
+        
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-value {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-danger);
+        }
+        
+        .price-halloween {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .price-halloween::after {
+            content: '🎃';
+            position: absolute;
+            right: -1.5rem;
+            font-size: 1rem;
+        }
+        
+        .btn-buy {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background: linear-gradient(135deg, var(--color-success) 0%, #16a34a 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        
+        .trust {
+            padding: var(--space-3xl) var(--space-xl);
+            background: white;
+        }
+        
+        .trust-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+        }
+        
+        .trust-card {
+            text-align: center;
+            padding: var(--space-xl);
+            background: linear-gradient(135deg, var(--color-gray-50) 0%, white 100%);
+            border-radius: var(--radius-xl);
+            border: 2px solid var(--color-gray-100);
+            transition: all var(--transition-base);
+        }
+        
+        .trust-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .trust-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-success) 0%, #16a34a 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xl);
+        }
+        
+        .trust-title {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .trust-description {
+            color: var(--color-gray-600);
+            font-size: var(--font-size-sm);
+        }
+        
+        .faq {
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--color-gray-50);
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq-question {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .faq-question i {
+            color: var(--color-primary);
+        }
+        
+        .faq-answer {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        .faq-answer strong {
+            color: var(--color-primary);
+        }
+        
+        .cta {
+            padding: var(--space-3xl) var(--space-xl);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+        
+        .cta-description {
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .footer {
+            background: var(--color-gray-900);
+            color: var(--color-gray-400);
+            padding: var(--space-2xl) var(--space-xl);
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
         }
         
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            animation: bounceIn 0.6s ease;
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-        }
-        
-        .back-to-top:active {
-            transform: translateY(-3px) scale(0.98);
-            transition: all 0.1s ease;
-        }
-        
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(100px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) translateY(-10px);
-            }
-            70% {
-                transform: scale(0.9) translateY(0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
+            .hero {
+                padding: 6rem var(--space-lg) 4rem;
             }
             
-            h1 {
-                font-size: 2rem;
+            .hero-title {
+                font-size: var(--font-size-3xl);
             }
             
-            .section {
-                padding: 1rem;
+            .hero-subtitle {
+                font-size: var(--font-size-base);
             }
             
-            table {
-                font-size: 0.9rem;
+            .section-title {
+                font-size: var(--font-size-2xl);
             }
             
-            th, td {
-                padding: 8px;
+            .nav-menu {
+                display: none;
             }
             
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .pricing-table {
+                overflow-x: auto;
+            }
+            
+            .pricing-table th,
+            .pricing-table td {
+                padding: var(--space-md);
+                font-size: var(--font-size-sm);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>CloudCone VPS</h1>
-            <p class="subtitle">高性能美国洛杉矶云服务器 | CN2优化线路 | 续费同价</p>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-cloud"></i>
+                CloudCone
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">特性</a></li>
+                <li><a href="#pricing" class="nav-link">价格</a></li>
+                <li><a href="#faq" class="nav-link">常见问题</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <div class="container">
-        <div class="section">
-            <h2>🌟 CloudCone 简介</h2>
-            <p>CloudCone 成立于 2017 年，美国注册公司（怀俄明州 2017-000753144）。主营美国洛杉矶 MultaCom 机房的云服务器/VPS、独立服务器、电子邮件托管等业务。</p>
-            
-            <div class="highlight">
-                <strong>核心优势：</strong>
-                <ul>
-                    <li>🏢 VPS 基于 KVM 虚拟，采用自行研发的控制面板</li>
-                    <li>🌐 MultaCom 机房采用动态路由网络，电信网络走 CN2 线路</li>
-                    <li>⚡ 延迟和稳定性在非高峰时段都较为优秀</li>
-                    <li>💰 按秒计费、随删随用、定期备份服务</li>
-                    <li>💳 支持支付宝、Paypal、信用卡等方式付款</li>
-                </ul>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-ghost"></i>
+                🎃 万圣节特惠进行中 · 超低价格
             </div>
-            
-            <h3>官方网站</h3>
-            <div class="website-links">
-                <a href="https://app.cloudcone.com/?ref=12690" class="website-link" target="_blank">官方网站</a>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>🔥 2025年最新限量促销款 VPS</h2>
-            <div class="promo-badge">限时限量 · 随时缺货</div>
-            
-            <h3>标准 VPS</h3>
-            <div class="section-description">
-                美国西海岸洛杉矶 MultaCom 机房，千兆带宽，1 个 IPv4 地址，3 个 IPv6 地址，基于 KVM 虚拟，纯 SSD RAID 10 存储。
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>内存</th>
-                        <th>CPU</th>
-                        <th>硬盘(SSD)</th>
-                        <th>流量</th>
-                        <th>带宽</th>
-                        <th>价格(续费同价)</th>
-                        <th>购买链接</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1G</td>
-                        <td>1核</td>
-                        <td>14G</td>
-                        <td>1T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$20/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/355/create?token=ssd-vps-1&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>2G</td>
-                        <td>2核</td>
-                        <td>26G</td>
-                        <td>2T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$26/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/356/create?token=ssd-vps-2&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>3G</td>
-                        <td>3核</td>
-                        <td>41G</td>
-                        <td>3T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$36/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/357/create?token=ssd-vps-3&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>4G</td>
-                        <td>4核</td>
-                        <td>55G</td>
-                        <td>4T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$47/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/358/create?token=ssd-vps-4&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>8G</td>
-                        <td>8核</td>
-                        <td>111G</td>
-                        <td>5T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$90/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/359/create?token=ssd-vps-5&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>16G</td>
-                        <td>10核</td>
-                        <td>223G</td>
-                        <td>6T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$170/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/360/create?token=ssd-vps-6&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>SC2 云服务器</h3>
-            <div class="section-description">
-                美国西海岸洛杉矶 MultaCom 机房，千兆带宽，1 个 IPv4 地址，3 个 IPv6 地址，基于 KVM 虚拟，纯 SSD RAID 10 存储。
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>内存</th>
-                        <th>CPU</th>
-                        <th>硬盘(SSD)</th>
-                        <th>流量</th>
-                        <th>带宽</th>
-                        <th>价格(续费同价)</th>
-                        <th>购买链接</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2G</td>
-                        <td>3核</td>
-                        <td>50G</td>
-                        <td>4T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$59.82/年</td>
-                        <td><a href="https://app.cloudcone.com/compute/1459/create?token=cny-25-sc2-1&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>4G</td>
-                        <td>5核</td>
-                        <td>110G</td>
-                        <td>5T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$114.99/年</td>
-                        <td><a href="https://app.cloudcone.com/compute/1460/create?token=cny-25-sc2-2&ref=12690" class="buy-btn" target="_blank">点此购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>8G</td>
-                        <td>9核</td>
-                        <td>220G</td>
-                        <td>6T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$225.70/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/compute/1455/create?token=bf-24-sc2-3&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>16G</td>
-                        <td>12核</td>
-                        <td>550G</td>
-                        <td>8T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$426.22/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/compute/1456/create?token=bf-24-sc2-4&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>32G</td>
-                        <td>15核</td>
-                        <td>990G</td>
-                        <td>10T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$853.16/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/compute/1457/create?token=bf-24-sc2-5&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>64G</td>
-                        <td>20核</td>
-                        <td>1900G</td>
-                        <td>10T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$1678.29/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/compute/1458/create?token=bf-24-sc2-6&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>📋 常规款 VPS</h2>
-            
-            <h3>年付 VPS</h3>
-            <div class="section-description">
-                采用 Intel Xeon E 或 Silver 处理器，SSD Cached RAID 10 存储，默认 1 个 IPv4，1Gbps 带宽，支持硬件配置升级。
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>内存</th>
-                        <th>CPU</th>
-                        <th>硬盘</th>
-                        <th>流量</th>
-                        <th>带宽</th>
-                        <th>价格(续费同价)</th>
-                        <th>购买链接</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1G</td>
-                        <td>1核</td>
-                        <td>30G</td>
-                        <td>1T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$21.6/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/1/create?token=vps-1&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>2G</td>
-                        <td>2核</td>
-                        <td>50G</td>
-                        <td>3T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$35.88/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/2/create?token=vps-2&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                    <tr>
-                        <td>3.5G</td>
-                        <td>3核</td>
-                        <td>70G</td>
-                        <td>6T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$54/年</td>
-                        <td><a href="https://app.cloudcone.com.cn/vps/3/create?token=vps-3&ref=12690" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>小时计费/月付 VPS</h3>
-            <div class="section-description">
-                即时部署、随时删除，可自定义配置，免费附带自动备份和快照等功能。
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>内存</th>
-                        <th>CPU</th>
-                        <th>硬盘</th>
-                        <th>流量</th>
-                        <th>带宽</th>
-                        <th>价格</th>
-                        <th>购买链接</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1G</td>
-                        <td>1核</td>
-                        <td>20G</td>
-                        <td>3T/月</td>
-                        <td>1Gbps</td>
-                        <td class="price">$0.00699/小时</td>
-                        <td><a href="https://app.cloudcone.com.cn/compute/create?ref=12690&cpu=1&ram=1024&disk=20" class="buy-btn" target="_blank">点击购买</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="section">
-            <div class="tips">
-                <h3>💡 购买须知</h3>
-                <ul>
-                    <li><strong>预充值：</strong>购买需先注册账号预先充值，充值支持支付宝、Paypal、信用卡等支付方式</li>
-                    <li><strong>IP 更换：</strong>开到被墙 IP 地址，SC2云服务器可以删掉实例重新购买，或提交工单支付 2 美元更换 IP</li>
-                    <li><strong>IPv6 地址：</strong>部分套餐附赠 IPv6 地址，在 Networking 菜单开启</li>
-                    <li><strong>自动备份：</strong>部分套餐附赠定期备份功能，在 Backup 菜单开启（每天滚动备份，保持三个备份）</li>
-                    <li><strong>套餐区别：</strong>SC2 VPS 性能更好，有更好的 CPU 和更快的 SSD RAID 10 存储，免费附带自动备份和快照功能</li>
-                </ul>
+            <h1 class="hero-title">
+                洛杉矶高性能云服务器<br>
+                CN2优化线路 按需付费
+            </h1>
+            <p class="hero-subtitle">
+                KVM虚拟化 · 纯SSD存储 · 动态路由CN2线路 · 按秒计费 · 灵活使用
+            </p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    查看优惠套餐
+                </a>
+                <a href="https://app.cloudcone.com/?ref=12690" class="btn btn-secondary" target="_blank">
+                    访问官网
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 返回顶部按钮 -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="stat-value">KVM</div>
+                <div class="stat-label">虚拟化技术</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <div class="stat-value">CN2</div>
+                <div class="stat-label">优化线路</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value">按秒</div>
+                <div class="stat-label">计费方式</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-hdd"></i>
+                </div>
+                <div class="stat-value">RAID 10</div>
+                <div class="stat-label">纯SSD存储</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="section-header">
+            <span class="section-label">核心优势</span>
+            <h2 class="section-title">为什么选择 CloudCone？</h2>
+            <p class="section-description">
+                专业的洛杉矶云服务器提供商，为您提供灵活、高效的云计算解决方案
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="feature-title">KVM 虚拟化</h3>
+                <p class="feature-description">
+                    基于 KVM 虚拟化技术，自行研发的控制面板，提供更好的性能和稳定性。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3 class="feature-title">CN2 优化线路</h3>
+                <p class="feature-description">
+                    MultaCom 机房采用动态路由网络，电信网络走 CN2 线路，延迟低速度快。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">按秒计费</h3>
+                <p class="feature-description">
+                    按秒计费、随删随用，真正做到按需付费，为您节省成本。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3 class="feature-title">高性能 SSD</h3>
+                <p class="feature-description">
+                    纯 SSD RAID 10 存储，提供更快的读写速度和更高的数据安全性。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="feature-title">定期备份</h3>
+                <p class="feature-description">
+                    部分套餐提供免费定期备份服务，每天滚动备份，保持三个备份。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="feature-title">多种支付方式</h3>
+                <p class="feature-description">
+                    支持支付宝、Paypal、信用卡等多种支付方式，方便快捷。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <span class="section-label">优惠套餐</span>
+            <h2 class="section-title">选择适合您的方案</h2>
+            <p class="section-description">
+                所有套餐均为洛杉矶 MultaCom 机房，千兆带宽
+            </p>
+        </div>
+        <div class="pricing-container" id="pricingContainer">
+            <!-- 动态生成价格表 -->
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="section-header">
+            <span class="section-label">服务保障</span>
+            <h2 class="section-title">值得信赖的云服务</h2>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3 class="trust-title">高性能 SSD</h3>
+                <p class="trust-description">纯 SSD RAID 10 存储</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="trust-title">千兆带宽</h3>
+                <p class="trust-description">1Gbps 大带宽接入</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="trust-title">定期备份</h3>
+                <p class="trust-description">免费自动备份服务</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3 class="trust-title">价格透明</h3>
+                <p class="trust-description">续费同价，无隐藏费用</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="section-header">
+            <span class="section-label">常见问题</span>
+            <h2 class="section-title">购买须知</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    如何购买？
+                </div>
+                <div class="faq-answer">
+                    购买需先<strong>注册账号预先充值</strong>，充值支持支付宝、Paypal、信用卡等支付方式。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    如果遇到IP被墙怎么办？
+                </div>
+                <div class="faq-answer">
+                    开到被墙 IP 地址，<strong>SC2云服务器</strong>可以删掉实例重新购买，或提交工单支付 2 美元更换 IP。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    支持IPv6吗？
+                </div>
+                <div class="faq-answer">
+                    部分套餐附赠 IPv6 地址，在 <strong>Networking 菜单</strong>开启即可使用。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    什么是自动备份？
+                </div>
+                <div class="faq-answer">
+                    部分套餐附赠<strong>定期备份功能</strong>，在 Backup 菜单开启。每天滚动备份，保持三个备份，保障数据安全。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    标准VPS和SC2有什么区别？
+                </div>
+                <div class="faq-answer">
+                    <strong>SC2 VPS</strong> 性能更好，有更好的 CPU 和更快的 SSD RAID 10 存储，免费附带自动备份和快照功能。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title">准备好开始了吗？</h2>
+            <p class="cta-description">
+                立即选购适合您的VPS方案，享受高性能云服务
+            </p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    查看优惠套餐
+                </a>
+                <a href="https://app.cloudcone.com/?ref=12690" class="btn btn-secondary" target="_blank">
+                    访问官网
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 CloudCone VPS 推广页面. 所有数据来源于官方网站.</p>
+        </div>
+    </footer>
+
     <a href="#" class="back-to-top" id="backToTop">
-        ↑
+        <i class="fas fa-arrow-up"></i>
     </a>
 
     <script>
-        // 返回顶部功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const backToTop = document.getElementById('backToTop');
+        const pricingData = {
+            halloween: {
+                title: '🎃 万圣节 & Q3 闪购特惠活动',
+                badge: '🎃 超值特惠',
+                categories: [
+                    {
+                        name: '万圣节特惠 VPS',
+                        description: '超低价格，限时限量，先到先得！',
+                        plans: [
+                            { ram: '1G', cpu: '1核', disk: '50G SSD-Cached', traffic: '1T/月', bandwidth: '1Gbps', price: '$9.99/年', link: 'https://app.cloudcone.com/vps/437/create?ref=12690&token=halloween-25-fs-vps-1' },
+                            { ram: '2G', cpu: '2核', disk: '27G SSD', traffic: '2T/月', bandwidth: '1Gbps', price: '$13.49/年', link: 'https://app.cloudcone.com/vps/435/create?ref=12690&token=halloween-25-fs-ssd-vps-2' },
+                            { ram: '4G', cpu: '4核', disk: '55G SSD', traffic: '3T/月', bandwidth: '1Gbps', price: '$26.88/年', link: 'https://app.cloudcone.com/vps/436/create?ref=12690&token=halloween-25-fs-ssd-vps-3' }
+                        ]
+                    },
+                    {
+                        name: 'Q3 闪购特惠 VPS',
+                        description: '第三季度闪购活动，性价比之选',
+                        plans: [
+                            { ram: '1G', cpu: '1核', disk: '60G SSD-Cached', traffic: '3T/月', bandwidth: '1Gbps', price: '$10.99/年', link: 'https://app.cloudcone.com/vps/405/create?ref=12690&token=flash-q3-25-vps-1' },
+                            { ram: '2G', cpu: '2核', disk: '120G SSD-Cached', traffic: '3T/月', bandwidth: '1Gbps', price: '$14.99/年', link: 'https://app.cloudcone.com/vps/406/create?ref=12690&token=flash-q3-25-vps-2' }
+                        ]
+                    }
+                ]
+            },
+            promo: {
+                title: '2025年最新限量促销款 VPS',
+                badge: '🔥 限时限量',
+                categories: [
+                    {
+                        name: '标准 VPS',
+                        description: '美国西海岸洛杉矶 MultaCom 机房，1 个 IPv4 地址，3 个 IPv6 地址',
+                        plans: [
+                            { ram: '1G', cpu: '1核', disk: '14G', traffic: '1T/月', bandwidth: '1Gbps', price: '$20/年', link: 'https://app.cloudcone.com.cn/vps/355/create?token=ssd-vps-1&ref=12690' },
+                            { ram: '2G', cpu: '2核', disk: '26G', traffic: '2T/月', bandwidth: '1Gbps', price: '$26/年', link: 'https://app.cloudcone.com.cn/vps/356/create?token=ssd-vps-2&ref=12690' },
+                            { ram: '3G', cpu: '3核', disk: '41G', traffic: '3T/月', bandwidth: '1Gbps', price: '$36/年', link: 'https://app.cloudcone.com.cn/vps/357/create?token=ssd-vps-3&ref=12690' },
+                            { ram: '4G', cpu: '4核', disk: '55G', traffic: '4T/月', bandwidth: '1Gbps', price: '$47/年', link: 'https://app.cloudcone.com.cn/vps/358/create?token=ssd-vps-4&ref=12690' },
+                            { ram: '8G', cpu: '8核', disk: '111G', traffic: '5T/月', bandwidth: '1Gbps', price: '$90/年', link: 'https://app.cloudcone.com.cn/vps/359/create?token=ssd-vps-5&ref=12690' },
+                            { ram: '16G', cpu: '10核', disk: '223G', traffic: '6T/月', bandwidth: '1Gbps', price: '$170/年', link: 'https://app.cloudcone.com.cn/vps/360/create?token=ssd-vps-6&ref=12690' }
+                        ]
+                    },
+                    {
+                        name: 'SC2 云服务器 ⭐ 推荐',
+                        description: '性能更强，免费备份和快照功能',
+                        plans: [
+                            { ram: '2G', cpu: '3核', disk: '50G', traffic: '4T/月', bandwidth: '1Gbps', price: '$59.82/年', link: 'https://app.cloudcone.com/compute/1459/create?token=cny-25-sc2-1&ref=12690' },
+                            { ram: '4G', cpu: '5核', disk: '110G', traffic: '5T/月', bandwidth: '1Gbps', price: '$114.99/年', link: 'https://app.cloudcone.com/compute/1460/create?token=cny-25-sc2-2&ref=12690' },
+                            { ram: '8G', cpu: '9核', disk: '220G', traffic: '6T/月', bandwidth: '1Gbps', price: '$225.70/年', link: 'https://app.cloudcone.com.cn/compute/1455/create?token=bf-24-sc2-3&ref=12690' },
+                            { ram: '16G', cpu: '12核', disk: '550G', traffic: '8T/月', bandwidth: '1Gbps', price: '$426.22/年', link: 'https://app.cloudcone.com.cn/compute/1456/create?token=bf-24-sc2-4&ref=12690' }
+                        ]
+                    }
+                ]
+            },
+            regular: {
+                title: '常规款 VPS',
+                badge: '稳定可靠',
+                categories: [
+                    {
+                        name: '年付 VPS',
+                        description: 'Intel Xeon E 或 Silver 处理器，支持硬件配置升级',
+                        plans: [
+                            { ram: '1G', cpu: '1核', disk: '30G', traffic: '1T/月', bandwidth: '1Gbps', price: '$21.6/年', link: 'https://app.cloudcone.com.cn/vps/1/create?token=vps-1&ref=12690' },
+                            { ram: '2G', cpu: '2核', disk: '50G', traffic: '3T/月', bandwidth: '1Gbps', price: '$35.88/年', link: 'https://app.cloudcone.com.cn/vps/2/create?token=vps-2&ref=12690' },
+                            { ram: '3.5G', cpu: '3核', disk: '70G', traffic: '6T/月', bandwidth: '1Gbps', price: '$54/年', link: 'https://app.cloudcone.com.cn/vps/3/create?token=vps-3&ref=12690' }
+                        ]
+                    },
+                    {
+                        name: '小时计费/月付 VPS',
+                        description: '即时部署、随时删除，免费备份和快照',
+                        plans: [
+                            { ram: '1G', cpu: '1核', disk: '20G', traffic: '3T/月', bandwidth: '1Gbps', price: '$0.00699/小时', link: 'https://app.cloudcone.com.cn/compute/create?ref=12690&cpu=1&ram=1024&disk=20' }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function renderPricing() {
+            const container = document.getElementById('pricingContainer');
             
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
+            Object.entries(pricingData).forEach(([key, section]) => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'pricing-category';
+                
+                const badgeClass = key === 'halloween' ? 'category-badge halloween-badge' : 'category-badge';
+                const iconClass = key === 'halloween' ? 'fas fa-ghost' : 'fas fa-fire';
+                
+                const header = `
+                    <div class="category-header">
+                        <h3 class="category-title">
+                            <i class="${iconClass}"></i>
+                            ${section.title}
+                            <span class="${badgeClass}">${section.badge}</span>
+                        </h3>
+                    </div>
+                `;
+                
+                sectionDiv.innerHTML = header;
+                
+                section.categories.forEach(category => {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.style.marginBottom = 'var(--space-xl)';
+                    
+                    const priceClass = key === 'halloween' ? 'price-halloween' : 'price-value';
+                    
+                    const categoryHTML = `
+                        <h4 style="font-size: var(--font-size-xl); font-weight: 600; color: var(--color-gray-800); margin-bottom: var(--space-sm);">
+                            <i class="fas fa-server"></i> ${category.name}
+                        </h4>
+                        <p class="category-description">
+                            <i class="fas fa-info-circle"></i>
+                            ${category.description}
+                        </p>
+                        <div class="pricing-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-memory"></i> 内存</th>
+                                        <th><i class="fas fa-microchip"></i> CPU</th>
+                                        <th><i class="fas fa-hdd"></i> 硬盘</th>
+                                        <th><i class="fas fa-exchange-alt"></i> 流量</th>
+                                        <th><i class="fas fa-wifi"></i> 带宽</th>
+                                        <th><i class="fas fa-tag"></i> 价格</th>
+                                        <th><i class="fas fa-shopping-cart"></i> 购买</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${category.plans.map(plan => `
+                                        <tr>
+                                            <td><span class="spec-value">${plan.ram}</span></td>
+                                            <td><span class="spec-value">${plan.cpu}</span></td>
+                                            <td><span class="spec-value">${plan.disk}</span></td>
+                                            <td><span class="spec-value">${plan.traffic}</span></td>
+                                            <td>${plan.bandwidth}</td>
+                                            <td><span class="${priceClass}">${plan.price}</span></td>
+                                            <td>
+                                                <a href="${plan.link}" class="btn-buy" target="_blank">
+                                                    <i class="fas fa-bolt"></i>
+                                                    立即购买
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                    
+                    categoryDiv.innerHTML = categoryHTML;
+                    sectionDiv.appendChild(categoryDiv);
+                });
+                
+                container.appendChild(sectionDiv);
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
 
-            backToTop.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPricing();
         });
     </script>
 </body>

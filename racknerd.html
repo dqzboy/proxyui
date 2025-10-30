@@ -3,9 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RackNerd VPS - 高性能美国云服务器优惠促销</title>
-    <meta name="description" content="RackNerd VPS 美国高性能云服务器，多种促销套餐，价格实惠，续费同价，7x24小时技术支持">
+    <title>RackNerd VPS - 高性能美国云服务器 | 专业VPS托管服务商</title>
+    <meta name="description" content="RackNerd提供高性能美国云服务器，多机房可选，续费同价，7x24小时技术支持。企业级VPS解决方案，值得信赖。">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Color System */
+            --color-primary: #6366f1;
+            --color-primary-dark: #4f46e5;
+            --color-primary-light: #818cf8;
+            --color-secondary: #ec4899;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-danger: #ef4444;
+            
+            /* Neutral Colors */
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -13,649 +81,1027 @@
         }
         
         body {
-            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            font-family: var(--font-sans);
+            font-size: var(--font-size-base);
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            color: var(--color-gray-900);
+            background: var(--color-gray-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        .container {
-            max-width: 1200px;
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-gray-200);
+            z-index: 1000;
+            transition: all var(--transition-base);
+        }
+        
+        .nav-container {
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: var(--space-md) var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        header {
+        .nav-logo {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: var(--color-gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .section {
-            background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        h2 {
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 2rem 0 0.8rem 0;
-            padding: 0.5rem 0;
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
-            border-radius: 5px;
-        }
-        
-        .note h3 {
-            color: #856404;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            font-weight: normal;
-            margin: 0 0 0.5rem 0;
-            padding: 0;
-            border-left: none;
-            padding-left: 0;
-            background: none;
-            border-radius: 0;
-        }
-        
-        .section-description {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e9ecef;
-            font-size: 0.95rem;
-            color: #495057;
-            line-height: 1.5;
-        }
-        
-        .highlight {
-            background: #e8f4f8;
-            padding: 1rem;
-            border-left: 4px solid #667eea;
-            margin: 1rem 0;
-        }
-        
-        .highlight ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        
-        .highlight li {
-            margin: 0.5rem 0;
-        }
-        
-        .website-links {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .website-link {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        
-        .website-link:hover {
-            background: #5a67d8;
-            transform: translateY(-2px);
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: white;
-            border-radius: 8px;
+            padding: 8rem var(--space-xl) 6rem;
+            margin-top: 4rem;
             overflow: hidden;
         }
         
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .action-btn {
-            background: #48bb78;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-        
-        .action-btn:hover {
-            background: #38a169;
-            transform: scale(1.05);
-        }
-        
-        .price {
-            font-weight: bold;
-            color: #e53e3e;
-        }
-        
-        .dc-badge {
-            background: #06d6a0;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-left: 0.5rem;
-        }
-        
-        .dc-badge.dc03 {
-            background: #ff6b6b;
-        }
-        
-        .promotion-tag {
-            background: #e53e3e;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        
-        .note {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-        }
-        
-        .note h3 {
-            color: #856404;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            font-weight: normal;
-            margin: 0 0 0.5rem 0;
-            padding: 0;
-            border-left: none;
-            padding-left: 0;
-            background: none;
-            border-radius: 0;
-        }
-        
-        .note ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        
-        .note li {
-            margin: 0.5rem 0;
-        }
-        
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            text-decoration: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-            z-index: 1000;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .back-to-top::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
         }
         
-        .back-to-top:hover::before {
-            opacity: 1;
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-xl);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            font-weight: 400;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto var(--space-2xl);
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-2xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: var(--space-3xl) var(--space-xl);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-2xl);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--color-gray-50) 0%, white 100%);
+            transition: all var(--transition-base);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-2xl);
+        }
+        
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+            font-weight: 500;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: var(--space-3xl) var(--space-xl);
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-3xl);
+        }
+        
+        .section-label {
+            display: inline-block;
+            padding: var(--space-sm) var(--space-lg);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.02em;
+        }
+        
+        .section-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        .features-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+        }
+        
+        .feature-card {
+            padding: var(--space-2xl);
+            background: white;
+            border: 2px solid var(--color-gray-100);
+            border-radius: var(--radius-2xl);
+            transition: all var(--transition-base);
+        }
+        
+        .feature-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .feature-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .feature-description {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--color-gray-50);
+        }
+        
+        .pricing-cards {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .pricing-group {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .pricing-group-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-md);
+            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-secondary) 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .pricing-table {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table thead {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+        }
+        
+        .pricing-table th {
+            padding: var(--space-lg);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-table td {
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        
+        .pricing-table tbody tr {
+            transition: background var(--transition-fast);
+        }
+        
+        .pricing-table tbody tr:hover {
+            background: var(--color-gray-50);
+        }
+        
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-value {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-danger);
+        }
+        
+        .btn-buy {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            margin-left: var(--space-sm);
+        }
+        
+        .badge-warning {
+            background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+        }
+        
+        /* Trust Section */
+        .trust {
+            padding: var(--space-3xl) var(--space-xl);
+            background: white;
+        }
+        
+        .trust-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+        }
+        
+        .trust-card {
+            text-align: center;
+            padding: var(--space-xl);
+            background: linear-gradient(135deg, var(--color-gray-50) 0%, white 100%);
+            border-radius: var(--radius-xl);
+            border: 2px solid var(--color-gray-100);
+            transition: all var(--transition-base);
+        }
+        
+        .trust-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .trust-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-xl);
+        }
+        
+        .trust-title {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .trust-description {
+            color: var(--color-gray-600);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--color-gray-50);
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq-question {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .faq-question i {
+            color: var(--color-primary);
+        }
+        
+        .faq-answer {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+        
+        .faq-answer ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-xl);
+        }
+        
+        .faq-answer li {
+            margin: var(--space-sm) 0;
+        }
+        
+        .faq-answer strong {
+            color: var(--color-primary);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: var(--space-3xl) var(--space-xl);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+        
+        .cta-description {
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-gray-900);
+            color: var(--color-gray-400);
+            padding: var(--space-2xl) var(--space-xl);
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
         }
         
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
-            animation: bounceIn 0.6s ease;
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
         }
         
-        .back-to-top:active {
-            transform: translateY(-3px) scale(0.98);
-            transition: all 0.1s ease;
-        }
-        
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(100px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) translateY(-10px);
-            }
-            70% {
-                transform: scale(0.9) translateY(0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
+            .hero {
+                padding: 6rem var(--space-lg) 4rem;
             }
             
-            h1 {
-                font-size: 2rem;
+            .hero-title {
+                font-size: var(--font-size-3xl);
             }
             
-            .section {
-                padding: 1rem;
+            .hero-subtitle {
+                font-size: var(--font-size-base);
             }
             
-            table {
-                font-size: 0.9rem;
+            .section-title {
+                font-size: var(--font-size-2xl);
             }
             
-            th, td {
-                padding: 8px;
+            .nav-menu {
+                display: none;
             }
             
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .pricing-table {
+                overflow-x: auto;
+            }
+            
+            .pricing-table th,
+            .pricing-table td {
+                padding: var(--space-md);
+                font-size: var(--font-size-sm);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>RackNerd VPS</h1>
-            <p class="subtitle">高性能美国云服务器 | 多机房可选 | 续费同价 | 7x24技术支持</p>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-server"></i>
+                RackNerd
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">特性</a></li>
+                <li><a href="#pricing" class="nav-link">价格</a></li>
+                <li><a href="#faq" class="nav-link">常见问题</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <div class="container">
-        <div class="section">
-            <h2>🌟 RackNerd 简介</h2>
-            <p>RackNerd 是一家专业的美国云服务器提供商，主要提供高性能VPS主机服务。拥有多个数据中心，提供稳定可靠的云服务器解决方案。</p>
-            
-            <div class="highlight">
-                <strong>核心优势：</strong>
-                <ul>
-                    <li>🚀 采用最新、最先进的 Intel Xeon 处理器</li>
-                    <li>🛡️ 网络配备Noction IRP优化设备，提供优秀的网络性能</li>
-                    <li>🎧 7x24小时专业技术支持</li>
-                    <li>💰 续费同价，无隐藏费用</li>
-                </ul>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i>
+                限时促销活动进行中
             </div>
-            
-            <h3>官方网站</h3>
-            <div class="website-links">
-                <a href="https://my.racknerd.com/aff.php?aff=12151" class="website-link" target="_blank">官方网站</a>
-            </div>
-        </div>
-
-        <div id="vps-tables"></div>
-
-        <div class="section">
-            <div class="note">
-                <h3>💡 购买须知与优势</h3>
-                <ul>
-                    <li><strong>推荐配置：</strong>建议购买至少 1GB 内存配置，确保最佳性能体验</li>
-                    <li><strong>IP 更换：</strong>如遇IP被墙问题，购买后72小时内可免费更换IP地址</li>
-                    <li><strong>IPv6 支持：</strong>洛杉矶DC-02机房提供免费IPv6地址，支持更好的网络连接</li>
-                    <li><strong>线路优化：</strong>DC02/DC03机房线路优化，中国大陆访问速度更快</li>
-                    <li><strong>价格保障：</strong>所有套餐续费同价，无价格上涨风险</li>
-                </ul>
+            <h1 class="hero-title">
+                高性能美国云服务器<br>
+                助力您的业务腾飞
+            </h1>
+            <p class="hero-subtitle">
+                企业级VPS解决方案 · 多机房可选 · 续费同价 · 7x24小时专业技术支持
+            </p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    查看优惠套餐
+                </a>
+                <a href="https://my.racknerd.com/aff.php?aff=12151" class="btn btn-secondary" target="_blank">
+                    访问官网
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 返回顶部按钮 -->
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">服务正常运行时间</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="stat-value">Intel Xeon</div>
+                <div class="stat-label">最新处理器</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="stat-value">7x24</div>
+                <div class="stat-label">技术支持</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-value">续费同价</div>
+                <div class="stat-label">无隐藏费用</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <span class="section-label">核心优势</span>
+            <h2 class="section-title">为什么选择 RackNerd？</h2>
+            <p class="section-description">
+                我们提供企业级基础设施，确保您的业务始终在线，性能卓越
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="feature-title">高性能处理器</h3>
+                <p class="feature-description">
+                    采用最新、最先进的 Intel Xeon 处理器，为您的应用提供强劲动力，确保卓越性能和稳定运行。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="feature-title">网络优化</h3>
+                <p class="feature-description">
+                    配备 Noction IRP 优化设备，提供优秀的网络性能体验，确保低延迟、高带宽的网络连接。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">企业级安全</h3>
+                <p class="feature-description">
+                    DDoS 防护、数据加密传输、定期备份，全方位保护您的数据安全，让您专注于业务发展。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">7x24 技术支持</h3>
+                <p class="feature-description">
+                    全天候专业技术支持团队，随时为您解决问题，确保您的业务永不停歇。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="feature-title">多数据中心</h3>
+                <p class="feature-description">
+                    美国多个数据中心可选，包括洛杉矶 DC-02、DC-03 优化线路，中国大陆访问速度更快。
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3 class="feature-title">续费同价</h3>
+                <p class="feature-description">
+                    价格透明，续费同价，无隐藏费用，长期使用更省心，为您节省成本。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <span class="section-label">优惠套餐</span>
+            <h2 class="section-title">选择适合您的方案</h2>
+            <p class="section-description">
+                所有套餐均支持续费同价，无隐藏费用
+            </p>
+        </div>
+        <div class="pricing-cards" id="pricingContainer">
+            <!-- 动态生成价格表 -->
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="section-header">
+            <span class="section-label">服务保障</span>
+            <h2 class="section-title">值得信赖的云服务</h2>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="trust-title">99.9% 正常运行时间</h3>
+                <p class="trust-description">企业级基础设施保障</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="trust-title">免费 IP 更换</h3>
+                <p class="trust-description">72小时内免费更换被墙IP</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="trust-title">多数据中心</h3>
+                <p class="trust-description">美国多个机房可选</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="trust-title">数据安全</h3>
+                <p class="trust-description">DDoS防护，加密传输</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="section-header">
+            <span class="section-label">常见问题</span>
+            <h2 class="section-title">购买须知与优势</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    推荐购买什么配置？
+                </div>
+                <div class="faq-answer">
+                    建议购买至少 <strong>1GB 内存</strong>配置，确保最佳性能体验。对于运行网站或应用的用户，推荐 2GB 及以上配置。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    如果遇到IP被墙怎么办？
+                </div>
+                <div class="faq-answer">
+                    购买后72小时内可<strong>免费更换IP地址</strong>。提交工单即可申请更换，我们的技术团队会及时处理。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    支持IPv6吗？
+                </div>
+                <div class="faq-answer">
+                    洛杉矶 <strong>DC-02 机房</strong>提供免费 IPv6 地址，支持更好的网络连接和更快的访问速度。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    哪个机房线路最好？
+                </div>
+                <div class="faq-answer">
+                    <strong>DC02/DC03 机房</strong>线路优化，中国大陆访问速度更快，延迟更低。推荐中国用户选择这两个机房。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle"></i>
+                    价格会上涨吗？
+                </div>
+                <div class="faq-answer">
+                    所有套餐<strong>续费同价</strong>，无价格上涨风险。购买时的价格就是续费价格，让您可以放心长期使用。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title">准备好开始了吗？</h2>
+            <p class="cta-description">
+                立即选购适合您的VPS方案，享受高性能云服务
+            </p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    查看优惠套餐
+                </a>
+                <a href="https://my.racknerd.com/aff.php?aff=12151" class="btn btn-secondary" target="_blank">
+                    访问官网
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 RackNerd VPS 推广页面. 所有数据来源于官方网站.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
     <a href="#" class="back-to-top" id="backToTop">
-        ↑
+        <i class="fas fa-arrow-up"></i>
     </a>
 
     <script>
-        // VPS促销数据配置
+        // VPS 促销数据
         const promotionData = {
-            // 2025年6月促销活动
             'promo_june_2025': {
                 title: '2025年最新促销优惠活动',
-                tag: '🎉 最新特惠',
-                icon: 'fas fa-gift',
+                badge: '🎉 最新特惠',
                 plans: [
-                    {
-                        cpu: '1',
-                        ram: '1',
-                        storage: '20',
-                        bandwidth: '2',
-                        price: '10.96',
-                        pid: '912',
-                        hasDC03: false,
-                        hasDC02: false
-                    },
-                    {
-                        cpu: '2',
-                        ram: '2',
-                        storage: '30',
-                        bandwidth: '4',
-                        price: '17.66',
-                        pid: '913',
-                        hasDC03: false,
-                        hasDC02: false
-                    },
-                    {
-                        cpu: '3',
-                        ram: '3.5',
-                        storage: '60',
-                        bandwidth: '5',
-                        price: '29.89',
-                        pid: '914',
-                        hasDC02: false,
-                        hasDC03: false
-                    },
-                    {
-                        cpu: '4',
-                        ram: '5',
-                        storage: '100',
-                        bandwidth: '10',
-                        price: '54.99',
-                        pid: '915',
-                        hasDC02: false,
-                        hasDC03: false
-                    }
+                    { cpu: '1', ram: '1', storage: '20', bandwidth: '2', price: '10.96', pid: '912', dc02: false, dc03: false },
+                    { cpu: '2', ram: '2', storage: '30', bandwidth: '4', price: '17.66', pid: '913', dc02: false, dc03: false },
+                    { cpu: '3', ram: '3.5', storage: '60', bandwidth: '5', price: '29.89', pid: '914', dc02: false, dc03: false },
+                    { cpu: '4', ram: '5', storage: '100', bandwidth: '10', price: '54.99', pid: '915', dc02: false, dc03: false }
                 ]
             },
-
-            // 2025新年促销活动
             'promo_ny_2025': {
                 title: '2025 新年促销活动',
-                tag: '🎉 新年特惠',
-                icon: 'fas fa-gift',
+                badge: '🎊 新年特惠',
                 plans: [
-                    {
-                        cpu: '1',
-                        ram: '1',
-                        storage: '24',
-                        bandwidth: '2',
-                        price: '11.29',
-                        pid: '903',
-                        hasDC03: true,
-                        hasDC02: false
-                    },
-                    {
-                        cpu: '1',
-                        ram: '2',
-                        storage: '40',
-                        bandwidth: '3.5',
-                        price: '18.29',
-                        pid: '904',
-                        hasDC03: true,
-                        hasDC02: false
-                    },
-                    {
-                        cpu: '2',
-                        ram: '3.5',
-                        storage: '65',
-                        bandwidth: '7',
-                        price: '32.49',
-                        pid: '905',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '3',
-                        ram: '4',
-                        storage: '105',
-                        bandwidth: '9',
-                        price: '43.88',
-                        pid: '906',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '4',
-                        ram: '6',
-                        storage: '140',
-                        bandwidth: '12',
-                        price: '59.99',
-                        pid: '907',
-                        hasDC02: false,
-                        hasDC03: true
-                    }
+                    { cpu: '1', ram: '1', storage: '24', bandwidth: '2', price: '11.29', pid: '903', dc02: false, dc03: true },
+                    { cpu: '1', ram: '2', storage: '40', bandwidth: '3.5', price: '18.29', pid: '904', dc02: false, dc03: true },
+                    { cpu: '2', ram: '3.5', storage: '65', bandwidth: '7', price: '32.49', pid: '905', dc02: false, dc03: true },
+                    { cpu: '3', ram: '4', storage: '105', bandwidth: '9', price: '43.88', pid: '906', dc02: false, dc03: true },
+                    { cpu: '4', ram: '6', storage: '140', bandwidth: '12', price: '59.99', pid: '907', dc02: false, dc03: true }
                 ]
             },
-            
-            // 2024黑色星期五活动
             'promo_bf_2024': {
-                title: '2024 黑色星期五 VPS 促销优惠活动',
-                tag: '🔥 黑五促销',
-                icon: 'fas fa-fire',
+                title: '2024 黑色星期五 VPS 促销',
+                badge: '🔥 黑五促销',
                 plans: [
-                    {
-                        cpu: '1',
-                        ram: '1',
-                        storage: '20',
-                        bandwidth: '1.5',
-                        price: '10.99',
-                        pid: '879',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '2',
-                        ram: '2.5',
-                        storage: '40',
-                        bandwidth: '3',
-                        price: '18.93',
-                        pid: '880',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '2',
-                        ram: '3',
-                        storage: '60',
-                        bandwidth: '5.5',
-                        price: '27.89',
-                        pid: '881',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '3',
-                        ram: '4.5',
-                        storage: '100',
-                        bandwidth: '8.5',
-                        price: '39.88',
-                        pid: '882',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '4',
-                        ram: '5',
-                        storage: '130',
-                        bandwidth: '12',
-                        price: '55.93',
-                        pid: '883',
-                        hasDC02: false,
-                        hasDC03: true
-                    }
+                    { cpu: '1', ram: '1', storage: '20', bandwidth: '1.5', price: '10.99', pid: '879', dc02: false, dc03: true },
+                    { cpu: '2', ram: '2.5', storage: '40', bandwidth: '3', price: '18.93', pid: '880', dc02: false, dc03: true },
+                    { cpu: '2', ram: '3', storage: '60', bandwidth: '5.5', price: '27.89', pid: '881', dc02: false, dc03: true },
+                    { cpu: '3', ram: '4.5', storage: '100', bandwidth: '8.5', price: '39.88', pid: '882', dc02: false, dc03: true },
+                    { cpu: '4', ram: '5', storage: '130', bandwidth: '12', price: '55.93', pid: '883', dc02: false, dc03: true }
                 ]
             },
-
-            // 2022黑色星期五活动
             'promo_bf_2022': {
                 title: '2022 黑色星期五套餐',
-                tag: '黑五特惠',
+                badge: '经典套餐',
                 plans: [
-                    {
-                        cpu: '1',
-                        ram: '0.75',
-                        storage: '10',
-                        bandwidth: '1',
-                        price: '10.28',
-                        pid: '695',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '1',
-                        ram: '1.5',
-                        storage: '30',
-                        bandwidth: '3',
-                        price: '16.88',
-                        pid: '696',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '2',
-                        ram: '2.5',
-                        storage: '60',
-                        bandwidth: '7',
-                        price: '28.55',
-                        pid: '697',
-                        hasDC02: false,
-                        hasDC03: true
-                    },
-                    {
-                        cpu: '2',
-                        ram: '4',
-                        storage: '80',
-                        bandwidth: '10',
-                        price: '38.88',
-                        pid: '698',
-                        hasDC02: false,
-                        hasDC03: true
-                    }
+                    { cpu: '1', ram: '0.75', storage: '10', bandwidth: '1', price: '10.28', pid: '695', dc02: false, dc03: true },
+                    { cpu: '1', ram: '1.5', storage: '30', bandwidth: '3', price: '16.88', pid: '696', dc02: false, dc03: true },
+                    { cpu: '2', ram: '2.5', storage: '60', bandwidth: '7', price: '28.55', pid: '697', dc02: false, dc03: true },
+                    { cpu: '2', ram: '4', storage: '80', bandwidth: '10', price: '38.88', pid: '698', dc02: false, dc03: true }
                 ]
             }
         };
 
-        // 生成购买链接的函数
         function generatePurchaseLink(pid) {
             return `https://my.racknerd.com/aff.php?aff=12151&pid=${pid}`;
         }
 
-        // 渲染表格的函数
-        function renderVPSTables() {
-            const container = document.getElementById('vps-tables');
+        function renderPricingTables() {
+            const container = document.getElementById('pricingContainer');
             
-            Object.entries(promotionData).forEach(([promoKey, promotion], index) => {
-                const section = document.createElement('div');
-                section.className = 'section';
+            Object.entries(promotionData).forEach(([key, promo]) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'pricing-group';
+                
+                const titleHTML = `
+                    <h3 class="pricing-group-title">
+                        ${promo.title}
+                        <span class="pricing-badge">${promo.badge}</span>
+                    </h3>
+                `;
                 
                 const tableHTML = `
-                    <h2>${promotion.title}</h2>
-                    <div class="promotion-tag">${promotion.tag}</div>
-                    <div class="table-container">
+                    <div class="pricing-table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>CPU核心</th>
-                                    <th>内存</th>
-                                    <th>存储空间</th>
-                                    <th>流量</th>
-                                    <th>价格(续费同价)</th>
-                                    <th>立即购买</th>
+                                    <th><i class="fas fa-microchip"></i> CPU核心</th>
+                                    <th><i class="fas fa-memory"></i> 内存</th>
+                                    <th><i class="fas fa-hdd"></i> 存储空间</th>
+                                    <th><i class="fas fa-exchange-alt"></i> 流量</th>
+                                    <th><i class="fas fa-tag"></i> 价格/年</th>
+                                    <th><i class="fas fa-shopping-cart"></i> 操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${promotion.plans.map(plan => `
+                                ${promo.plans.map(plan => `
                                     <tr>
                                         <td>
-                                            ${plan.cpu}核心
-                                            ${plan.hasDC02 ? '<span class="dc-badge">DC02优化</span>' : ''}
-                                            ${plan.hasDC03 ? '<span class="dc-badge dc03">DC03优化</span>' : ''}
+                                            <span class="spec-value">${plan.cpu}</span> 核心
+                                            ${plan.dc02 ? '<span class="badge">DC02优化</span>' : ''}
+                                            ${plan.dc03 ? '<span class="badge badge-warning">DC03优化</span>' : ''}
                                         </td>
-                                        <td>${plan.ram}GB</td>
-                                        <td>${plan.storage}GB</td>
-                                        <td>${plan.bandwidth}TB/月</td>
-                                        <td class="price">$${plan.price}/年</td>
+                                        <td><span class="spec-value">${plan.ram}</span> GB</td>
+                                        <td><span class="spec-value">${plan.storage}</span> GB SSD</td>
+                                        <td><span class="spec-value">${plan.bandwidth}</span> TB/月</td>
+                                        <td><span class="price-value">$${plan.price}</span></td>
                                         <td>
-                                            <a href="${generatePurchaseLink(plan.pid)}" class="action-btn" target="_blank">
+                                            <a href="${generatePurchaseLink(plan.pid)}" class="btn-buy" target="_blank">
+                                                <i class="fas fa-bolt"></i>
                                                 立即购买
                                             </a>
                                         </td>
@@ -666,32 +1112,40 @@
                     </div>
                 `;
                 
-                section.innerHTML = tableHTML;
-                container.appendChild(section);
+                groupDiv.innerHTML = titleHTML + tableHTML;
+                container.appendChild(groupDiv);
             });
         }
 
-        // 页面加载完成后渲染表格
-        document.addEventListener('DOMContentLoaded', function() {
-            renderVPSTables();
-            
+        // Back to top button
+        window.addEventListener('scroll', function() {
             const backToTop = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
 
-            backToTop.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPricingTables();
         });
     </script>
 </body>
