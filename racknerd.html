@@ -1012,6 +1012,17 @@
     <script>
         // VPS 促销数据
         const promotionData = {
+            'promo_bf_2025': {
+                title: '2025 黑色星期五 VPS 促销套餐',
+                badge: '🔥 黑五狂欢',
+                plans: [
+                    { cpu: '1', ram: '1', storage: '25', bandwidth: '2', price: '10.60', pid: '923', dc02: false, dc03: false },
+                    { cpu: '2', ram: '2.5', storage: '45', bandwidth: '3', price: '18.66', pid: '924', dc02: true, dc03: false },
+                    { cpu: '3', ram: '4', storage: '65', bandwidth: '6.5', price: '29.98', pid: '925', dc02: true, dc03: false },
+                    { cpu: '5', ram: '6', storage: '100', bandwidth: '10', price: '44.98', pid: '926', dc02: true, dc03: false },
+                    { cpu: '6', ram: '8', storage: '150', bandwidth: '20', price: '62.49', pid: '927', dc02: true, dc03: false }
+                ]
+            },
             'promo_double11_2025': {
                 title: '2025 年 RackNerd 双十一 VPS 促销活动来袭，2G 以上配置均可选择 DC02 机房',
                 badge: '🛒 双十一特惠',
@@ -1106,39 +1117,39 @@
                                             ${plan.dc03 ? '<span class="badge badge-warning">DC03优化</span>' : ''}
                                         </td>
                                         <td><span class="spec-value">${plan.ram}</span> GB</td>
-                                        <td><span class="spec-value">${plan.storage}</span> GB SSD</td>
-                                        <td><span class="spec-value">${plan.bandwidth}</span> TB/月</td>
-                                        <td><span class="price-value">$${plan.price}</span></td>
+                                        <td><span class="spec-value">${plan。storage}</span> GB SSD</td>
+                                        <td><span class="spec-value">${plan。bandwidth}</span> TB/月</td>
+                                        <td><span class="price-value">$${plan。price}</span></td>
                                         <td>
-                                            <a href="${generatePurchaseLink(plan.pid)}" class="btn-buy" target="_blank">
+                                            <a href="${generatePurchaseLink(plan。pid)}" class="btn-buy" target="_blank">
                                                 <i class="fas fa-bolt"></i>
                                                 立即购买
                                             </a>
                                         </td>
                                     </tr>
-                                `).join('')}
+                                `)。join('')}
                             </tbody>
                         </table>
                     </div>
                 `;
                 
-                groupDiv.innerHTML = titleHTML + tableHTML;
-                container.appendChild(groupDiv);
+                groupDiv。innerHTML = titleHTML + tableHTML;
+                container。appendChild(groupDiv);
             });
         }
 
         // Back to top button
-        window.addEventListener('scroll', function() {
+        window。addEventListener('scroll'， function() {
             const backToTop = document.getElementById('backToTop');
             if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
+                backToTop。classList。add('visible');
             } else {
-                backToTop.classList.remove('visible');
+                backToTop。classList。remove('visible');
             }
         });
 
         document.getElementById('backToTop').addEventListener('click', function(e) {
-            e.preventDefault();
+            e。preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
