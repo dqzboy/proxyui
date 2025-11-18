@@ -1117,39 +1117,39 @@
                                             ${plan.dc03 ? '<span class="badge badge-warning">DC03优化</span>' : ''}
                                         </td>
                                         <td><span class="spec-value">${plan.ram}</span> GB</td>
-                                        <td><span class="spec-value">${plan。storage}</span> GB SSD</td>
-                                        <td><span class="spec-value">${plan。bandwidth}</span> TB/月</td>
-                                        <td><span class="price-value">$${plan。price}</span></td>
+                                        <td><span class="spec-value">${plan.storage}</span> GB SSD</td>
+                                        <td><span class="spec-value">${plan.bandwidth}</span> TB/月</td>
+                                        <td><span class="price-value">$${plan.price}</span></td>
                                         <td>
-                                            <a href="${generatePurchaseLink(plan。pid)}" class="btn-buy" target="_blank">
+                                            <a href="${generatePurchaseLink(plan.pid)}" class="btn-buy" target="_blank">
                                                 <i class="fas fa-bolt"></i>
                                                 立即购买
                                             </a>
                                         </td>
                                     </tr>
-                                `)。join('')}
+                                `).join('')}
                             </tbody>
                         </table>
                     </div>
                 `;
                 
-                groupDiv。innerHTML = titleHTML + tableHTML;
-                container。appendChild(groupDiv);
+                groupDiv.innerHTML = titleHTML + tableHTML;
+                container.appendChild(groupDiv);
             });
         }
 
         // Back to top button
-        window。addEventListener('scroll'， function() {
+        window.addEventListener('scroll', function() {
             const backToTop = document.getElementById('backToTop');
             if (window.pageYOffset > 300) {
-                backToTop。classList。add('visible');
+                backToTop.classList.add('visible');
             } else {
-                backToTop。classList。remove('visible');
+                backToTop.classList.remove('visible');
             }
         });
 
         document.getElementById('backToTop').addEventListener('click', function(e) {
-            e。preventDefault();
+            e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
